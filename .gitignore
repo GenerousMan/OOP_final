@@ -1,3 +1,6 @@
+#VS
+*.opendb
+*.opensdf
 # C++ objects and libs
 
 *.slo
