@@ -73,12 +73,14 @@ public:
     ImageProcessor whitening(double beta = 2) const;
 
     // Adjust saturate
-    ImageProcessor saturation(const char shift = 20) const;
+    // shift is shift value in (-255, 255)
+    ImageProcessor saturation(char shift = 20) const;
 
     //Adjust hue
-    ImageProcessor hue(const char shift = 20) const;
+    // shift is shift value in (-255, 255)
+    ImageProcessor hue(char shift = 20) const;
 
-    // Auto white balcan
+    // Auto white balance
     ImageProcessor white_balance() const;
 
     // convert to QImage, return a copy;
