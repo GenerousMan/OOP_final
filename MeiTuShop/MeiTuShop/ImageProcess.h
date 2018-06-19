@@ -11,6 +11,7 @@
 #include <string>
 #include <exception>
 #include <QtGui/QImage>
+#include <vector>
 
 class ImageProcessor {
 public:
@@ -65,7 +66,20 @@ public:
 
     // Detail keep butter to be intensity/3
     // intensity = 10 seems good.
-    ImageProcessor buffing(int intensity = 10, int detail_keep = 3);
+    ImageProcessor buffing(int intensity = 10, int detail_keep = 3) const;
+
+    // Whiten skin, beta is streng of whitening.
+    // beta=2 means no change.
+    ImageProcessor whitening(double beta = 2) const;
+
+    // Adjust saturate
+    ImageProcessor saturation(const char shift = 20) const;
+
+    //Adjust hue
+    ImageProcessor hue(const char shift = 20) const;
+
+    // Auto white balcan
+    ImageProcessor white_balance() const;
 
     // convert to QImage, return a copy;
     QImage to_QImage(QImage::Format format = QImage::Format_RGB888) const;
@@ -245,7 +259,7 @@ ImageProcessor ImageProcessor::gamma_adjust() const {
     return gamma_img;
 }
 
-ImageProcessor ImageProcessor::buffing(int intensity, int detail_keep) {
+ImageProcessor ImageProcessor::buffing(int intensity, int detail_keep) const {
     cv::Mat result;
     int dx = intensity * 5;
     double fc = intensity * 12.5;
@@ -261,6 +275,90 @@ ImageProcessor ImageProcessor::buffing(int intensity, int detail_keep) {
     temp4 = m_img + 2 * temp3 - 255;
 
     result = (m_img * (100 - p) + temp4 * p) / 100;
+    return result;
+}
+
+ImageProcessor ImageProcessor::whitening(double beta) const {
+    cv::Mat result;
+    cv::Mat result_f;
+    cv::Mat temp;
+    m_img.convertTo(temp, CV_32FC3);
+    temp = temp * (beta - 1) + 1;
+    cv::log(temp, result_f);
+    result_f = result_f / cv::log(beta);
+    cv::normalize(result_f, result_f, 0, 255, CV_MINMAX);
+    cv::convertScaleAbs(result_f, result_f);
+    result_f.convertTo(result, CV_8UC3);
+    return result;
+}
+
+ImageProcessor ImageProcessor::white_balance() const {
+    cv::Mat result;
+    std::vector<cv::Mat> imageRGB;
+
+    cv::split(m_img, imageRGB);
+
+    double R, G, B;
+    B = cv::mean(imageRGB[0])[0];
+    G = cv::mean(imageRGB[1])[0];
+    R = cv::mean(imageRGB[2])[0];
+
+    double KR, KG, KB;
+    KB = (R + G + B) / (3 * B);
+    KG = (R + G + B) / (3 * G);
+    KR = (R + G + B) / (3 * R);
+
+    imageRGB[0] = imageRGB[0] * KB;
+    imageRGB[1] = imageRGB[1] * KG;
+    imageRGB[2] = imageRGB[2] * KR;
+
+    cv::merge(imageRGB, result);
+    return result;
+}
+
+ImageProcessor ImageProcessor::saturation(const char shift) const {
+    cv::Mat hsv;
+    cv::cvtColor(m_img, hsv, CV_BGR2HSV);
+    for (int j = 0; j < m_img.rows; j++) {
+        for (int i = 0; i < m_img.cols; i++) {
+            signed short s = hsv.at<cv::Vec3b>(j, i)[1];
+            signed short s_stable = s;
+            s_stable += shift;
+
+            if (s_stable < 0)
+                s = static_cast<short>(180 + s_stable);
+            else if (s_stable > 180)
+                s = static_cast<short>(s_stable - 180);
+            else
+                s = s_stable;
+            hsv.at<cv::Vec3b>(j, i)[1] = static_cast<unsigned char>(s);
+        }
+    }
+    cv::Mat result;
+    cvtColor(hsv, result, CV_HSV2BGR);
+    return result;
+}
+
+ImageProcessor ImageProcessor::hue(const char shift) const {
+    cv::Mat hsv;
+    cv::cvtColor(m_img, hsv, CV_BGR2HSV);
+    for (int j = 0; j < m_img.rows; j++) {
+        for (int i = 0; i < m_img.cols; i++) {
+            signed short h = hsv.at<cv::Vec3b>(j, i)[0];
+            signed short h_stable = h;
+            h_stable += shift;
+
+            if (h_stable < 0)
+                h = static_cast<short>(180 + h_stable);
+            else if (h_stable > 180)
+                h = static_cast<short>(h_stable - 180);
+            else
+                h = h_stable;
+            hsv.at<cv::Vec3b>(j, i)[0] = static_cast<unsigned char>(h);
+        }
+    }
+    cv::Mat result;
+    cvtColor(hsv, result, CV_HSV2BGR);
     return result;
 }
 
