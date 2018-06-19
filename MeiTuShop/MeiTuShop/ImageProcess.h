@@ -8,9 +8,12 @@
 #include <iostream>
 #include <opencv2/opencv.hpp>
 #include <utility>
+#include <string>
+#include <exception>
 
 class ImageProcessor {
 public:
+    ImageProcessor() = default;
 
     ImageProcessor(const cv::Mat &img) {
         m_img = img.clone();
@@ -32,18 +35,14 @@ public:
     }
 
     //For debug convenience
-    void imshow() const {
-        cv::namedWindow("Test");
-        cv::imshow("Test", m_img);
-        cv::waitKey(0);
-        cv::destroyWindow("Test");
-    }
-
+    void imshow(const std::string &name = "test") const;
 
     // rotate image
     // @angle: angle to rotate
     // @return an image processor obejct with rotated image.
     ImageProcessor rotation(double angle) const;
+
+    ImageProcessor crop(cv::Rect rect);
 
     ~ImageProcessor() = default;
 
@@ -81,6 +80,26 @@ ImageProcessor ImageProcessor::rotation(double angle) const {
                    cv::Size(static_cast<int>(out_width), static_cast<int>(out_height)));
 
     return trans_mat;
+}
+
+void ImageProcessor::imshow(const std::string &name) const {
+    cv::namedWindow(name);
+    cv::imshow(name, m_img);
+    cv::waitKey(0);
+    cv::destroyWindow(name);
+}
+
+ImageProcessor ImageProcessor::crop(cv::Rect rect) {
+    ImageProcessor croped_img;
+    // Calculation crop rectangle.
+    cv::Rect srcRect(0, 0, m_img.cols, m_img.rows);
+    rect = rect & srcRect;
+    if (rect.width <= 0 || rect.height <= 0)
+        throw std::runtime_error("witdh and height should > 0");
+
+    croped_img.m_img.create(cv::Size(rect.width, rect.height), m_img.type());
+    m_img(rect).copyTo(croped_img.m_img);
+    return croped_img;
 }
 
 #endif //OOP_FINAL_IMAGEPROCESS_H
