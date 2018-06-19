@@ -16,7 +16,7 @@ class ImageProcessor {
 public:
     ImageProcessor() = default;
 
-    explicit ImageProcessor(const cv::Mat &img) {
+    ImageProcessor(const cv::Mat &img) {
         m_img = img.clone();
     }
 
@@ -41,8 +41,33 @@ public:
     // @return an image processor obejct with rotated image.
     ImageProcessor rotation(double angle) const;
 
+    // Crop image
     ImageProcessor crop(cv::Rect rect);
 
+    // TO gray image.
+    ImageProcessor gray() const;
+
+    // Change contrast, 1.0 means no change
+    ImageProcessor contraast(double alpha) const;
+
+    // Change light, 0 means no change
+    ImageProcessor light(double beta) const;
+
+    // Auto histogram equalize
+    ImageProcessor histogram_equalize() const;
+
+    // Auto enhance by Laplace operator
+    ImageProcessor enhance() const;
+
+    ImageProcessor log_enhance() const;
+
+    ImageProcessor gamma_adjust() const;
+
+    // Detail keep butter to be intensity/3
+    // intensity = 10 seems good.
+    ImageProcessor buffing(int intensity = 10, int detail_keep = 3);
+
+    // convert to QImage, return a copy;
     QImage to_QImage(QImage::Format format = QImage::Format_RGB888) const;
 
     ~ImageProcessor() = default;
@@ -138,6 +163,105 @@ ImageProcessor &ImageProcessor::operator=(const ImageProcessor &img_pro) {
 ImageProcessor &ImageProcessor::operator=(const cv::Mat &img) {
     m_img = img.clone();
     return *this;
+}
+
+ImageProcessor ImageProcessor::gray() const {
+    auto temp_img = cv::Mat();
+    cv::cvtColor(m_img, temp_img, cv::COLOR_BGR2GRAY);
+    auto final_img = cv::Mat();
+    cv::cvtColor(temp_img, final_img, cv::COLOR_GRAY2BGR);
+    return final_img;
+}
+
+ImageProcessor ImageProcessor::contraast(double alpha) const {
+    cv::Mat new_img = cv::Mat::zeros(m_img.size(), m_img.type());
+    for (int y = 0; y < m_img.rows; y++) {
+        for (int x = 0; x < m_img.cols; x++) {
+            for (int c = 0; c < 3; c++) {
+                new_img.at<cv::Vec3b>(y, x)[c] = cv::saturate_cast<uchar>(
+                        alpha * (m_img.at<cv::Vec3b>(y, x)[c]));
+            }
+        }
+    }
+    return new_img;
+}
+
+ImageProcessor ImageProcessor::light(double beta) const {
+    cv::Mat new_img = cv::Mat::zeros(m_img.size(), m_img.type());
+    for (int y = 0; y < m_img.rows; y++) {
+        for (int x = 0; x < m_img.cols; x++) {
+            for (int c = 0; c < 3; c++) {
+                new_img.at<cv::Vec3b>(y, x)[c] = cv::saturate_cast<uchar>(
+                        (m_img.at<cv::Vec3b>(y, x)[c]) + beta);
+            }
+        }
+    }
+    return new_img;
+}
+
+ImageProcessor ImageProcessor::histogram_equalize() const {
+    auto result = m_img.clone();
+    cv::equalizeHist(m_img, result);
+    return result;
+}
+
+ImageProcessor ImageProcessor::enhance() const {
+    cv::Mat enhanced_img;
+    cv::Matx33f kernel(0, -1, 0, // Laplace operator
+                       0, 5, 0,
+                       0, -1, 0);
+    filter2D(m_img, enhanced_img, CV_8UC3, kernel);
+    return enhanced_img;
+}
+
+ImageProcessor ImageProcessor::log_enhance() const {
+    cv::Mat log_img(m_img.size(), CV_32FC3);
+    for (int i = 0; i < m_img.rows; i++) {
+        for (int j = 0; j < m_img.cols; j++) {
+            log_img.at<cv::Vec3f>(i, j)[0] = static_cast<float>(log(1 + m_img.at<cv::Vec3b>(i, j)[0]));
+            log_img.at<cv::Vec3f>(i, j)[1] = static_cast<float>(log(1 + m_img.at<cv::Vec3b>(i, j)[1]));
+            log_img.at<cv::Vec3f>(i, j)[2] = static_cast<float>(log(1 + m_img.at<cv::Vec3b>(i, j)[2]));
+        }
+    }
+    cv::normalize(log_img, log_img, 0, 255, CV_MINMAX);
+    cv::convertScaleAbs(log_img, log_img);
+    return log_img;
+}
+
+ImageProcessor ImageProcessor::gamma_adjust() const {
+    cv::Mat gamma_img(m_img.size(), CV_32FC3);
+    for (int i = 0; i < m_img.rows; i++) {
+        for (int j = 0; j < m_img.cols; j++) {
+            gamma_img.at<cv::Vec3f>(i, j)[0] = (m_img.at<cv::Vec3b>(i, j)[0]) * (m_img.at<cv::Vec3b>(i, j)[0]) *
+                                               (m_img.at<cv::Vec3b>(i, j)[0]);
+            gamma_img.at<cv::Vec3f>(i, j)[1] = (m_img.at<cv::Vec3b>(i, j)[1]) * (m_img.at<cv::Vec3b>(i, j)[1]) *
+                                               (m_img.at<cv::Vec3b>(i, j)[1]);
+            gamma_img.at<cv::Vec3f>(i, j)[2] = (m_img.at<cv::Vec3b>(i, j)[2]) * (m_img.at<cv::Vec3b>(i, j)[2]) *
+                                               (m_img.at<cv::Vec3b>(i, j)[2]);
+        }
+    }
+    cv::normalize(gamma_img, gamma_img, 0, 255, CV_MINMAX);
+    cv::convertScaleAbs(gamma_img, gamma_img);
+    return gamma_img;
+}
+
+ImageProcessor ImageProcessor::buffing(int intensity, int detail_keep) {
+    cv::Mat result;
+    int dx = intensity * 5;
+    double fc = intensity * 12.5;
+    int p = 50;
+    cv::Mat temp1, temp2, temp3, temp4;
+
+    cv::bilateralFilter(m_img, temp1, dx, fc, fc);
+
+    temp2 = (temp1 - m_img + 128);
+
+    cv::GaussianBlur(temp2, temp3, cv::Size(2 * detail_keep - 1, 2 * detail_keep - 1), 0, 0);
+
+    temp4 = m_img + 2 * temp3 - 255;
+
+    result = (m_img * (100 - p) + temp4 * p) / 100;
+    return result;
 }
 
 #endif //OOP_FINAL_IMAGEPROCESS_H

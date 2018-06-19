@@ -7,11 +7,11 @@
 #include <QLabel>
 
 int main(int argc, char *argv[]) {
-    ImageProcessor img = cv::imread("../test_image/lena.bmp");
-    auto r_img = img.crop(cv::Rect(0, 0, 256, 256));
+    ImageProcessor img = cv::imread("../test_image/face.png");
+    auto n_img = img.buffing(10, 3);
     QApplication a(argc, argv);
     QLabel *l = new QLabel();
-    l->setPixmap(QPixmap::fromImage(img.to_QImage()));
+    l->setPixmap(QPixmap::fromImage(n_img.to_QImage()));
     l->show();
     return a.exec();
 }
