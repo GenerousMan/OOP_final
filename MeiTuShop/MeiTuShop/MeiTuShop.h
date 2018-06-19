@@ -11,7 +11,6 @@ class MeiTuShop : public QMainWindow
 
 public:
 	MeiTuShop(QWidget *parent = Q_NULLPTR);
-	~MeituShop();
 
 private slots:
 	void LvJing1();
@@ -23,7 +22,6 @@ private slots:
 	
 private:
 	Ui::MeiTuShopClass ui;
-	QImage old_pic;
-	QImage new_pic;
+	Mat m_srcImage;
 };
 #endif
