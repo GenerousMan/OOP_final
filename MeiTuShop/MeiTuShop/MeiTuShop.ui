@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>967</width>
+    <width>1195</width>
     <height>692</height>
    </rect>
   </property>
@@ -14,84 +14,122 @@
    <string>BeautyWho</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QGraphicsView" name="graphicsView">
+   <widget class="QLabel" name="Pic_Before">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>10</y>
-      <width>621</width>
-      <height>611</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QToolButton" name="toolButton">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>50</y>
-      <width>201</width>
-      <height>91</height>
+      <x>310</x>
+      <y>250</y>
+      <width>72</width>
+      <height>15</height>
      </rect>
     </property>
     <property name="text">
-     <string>滤镜</string>
+     <string>原图</string>
     </property>
    </widget>
-   <widget class="QToolButton" name="toolButton_2">
+   <widget class="QLabel" name="Pic_After">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>160</y>
-      <width>201</width>
-      <height>91</height>
+      <x>830</x>
+      <y>260</y>
+      <width>72</width>
+      <height>15</height>
      </rect>
     </property>
     <property name="text">
-     <string>人脸识别</string>
+     <string>效果图</string>
     </property>
    </widget>
-   <widget class="QToolButton" name="toolButton_3">
+   <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>270</y>
-      <width>201</width>
-      <height>101</height>
+      <x>130</x>
+      <y>520</y>
+      <width>931</width>
+      <height>71</height>
      </rect>
     </property>
-    <property name="text">
-     <string>添加挂件</string>
-    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="Open">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>打开</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="Push_Lv1">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>滤镜1</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="Push_Lv2">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>滤镜2</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="Push_Lv3">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>滤镜3</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="Push_Lv4">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>滤镜4</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="push_face">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>人脸识别</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
-   <widget class="QToolButton" name="toolButton_4">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>390</y>
-      <width>201</width>
-      <height>111</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>保存</string>
-    </property>
-   </widget>
-  </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>967</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menu">
-    <property name="title">
-     <string>菜单</string>
-    </property>
-   </widget>
-   <addaction name="menu"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -107,5 +145,93 @@
  <resources>
   <include location="MeiTuShop.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>Push_Lv1</sender>
+   <signal>clicked()</signal>
+   <receiver>MeiTuShopClass</receiver>
+   <slot>slot1()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>190</x>
+     <y>576</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>174</x>
+     <y>418</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Push_Lv2</sender>
+   <signal>clicked()</signal>
+   <receiver>MeiTuShopClass</receiver>
+   <slot>slot2()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>424</x>
+     <y>606</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>388</x>
+     <y>476</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Push_Lv3</sender>
+   <signal>clicked()</signal>
+   <receiver>MeiTuShopClass</receiver>
+   <slot>slot3()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>538</x>
+     <y>577</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>534</x>
+     <y>442</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Push_Lv4</sender>
+   <signal>clicked()</signal>
+   <receiver>MeiTuShopClass</receiver>
+   <slot>slot4()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>792</x>
+     <y>587</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>777</x>
+     <y>444</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>push_face</sender>
+   <signal>clicked()</signal>
+   <receiver>MeiTuShopClass</receiver>
+   <slot>face()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>960</x>
+     <y>583</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>958</x>
+     <y>472</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>slot1()</slot>
+  <slot>slot2()</slot>
+  <slot>slot3()</slot>
+  <slot>slot4()</slot>
+  <slot>face()</slot>
+ </slots>
 </ui>
