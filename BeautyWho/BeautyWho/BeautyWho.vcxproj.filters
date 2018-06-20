@@ -33,26 +33,23 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MeiTuShop.cpp">
+    <ClCompile Include="BeautyWho.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="MeiTuShop.h">
+    <QtMoc Include="BeautyWho.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="MeiTuShop.ui">
+    <QtUic Include="BeautyWho.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="MeiTuShop.qrc">
+    <QtRcc Include="BeautyWho.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="MeiTuShop.rc" />
   </ItemGroup>
 </Project>
