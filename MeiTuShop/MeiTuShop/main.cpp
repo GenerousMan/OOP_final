@@ -1,10 +1,10 @@
-#include "BeautyWho.h"
+#include "MeiTuShop.h"
 #include <QtWidgets/QApplication>
 
 int main(int argc, char *argv[])
 {
 	QApplication a(argc, argv);
-	BeautyWho w;
+	MeiTuShop w;
 	w.show();
 	return a.exec();
 }

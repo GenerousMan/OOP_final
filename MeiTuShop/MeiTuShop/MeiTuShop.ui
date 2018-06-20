@@ -1,19 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>BeautyWhoClass</class>
- <widget class="QMainWindow" name="BeautyWhoClass">
+ <class>MeiTuShopClass</class>
+ <widget class="QMainWindow" name="MeiTuShopClass">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1102</width>
-    <height>625</height>
+    <width>1195</width>
+    <height>692</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>BeautyWho</string>
   </property>
   <widget class="QWidget" name="centralWidget">
+   <widget class="QLabel" name="Pic_Before">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>250</y>
+      <width>72</width>
+      <height>15</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>原图</string>
+    </property>
+   </widget>
    <widget class="QLabel" name="Pic_After">
     <property name="geometry">
      <rect>
@@ -30,8 +43,8 @@
    <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>480</y>
+      <x>130</x>
+      <y>520</y>
       <width>931</width>
       <height>71</height>
      </rect>
@@ -117,29 +130,6 @@
      </item>
     </layout>
    </widget>
-   <widget class="QScrollArea" name="picbefore">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>20</y>
-      <width>501</width>
-      <height>421</height>
-     </rect>
-    </property>
-    <property name="widgetResizable">
-     <bool>true</bool>
-    </property>
-    <widget class="QWidget" name="scrollAreaWidgetContents">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>499</width>
-       <height>419</height>
-      </rect>
-     </property>
-    </widget>
-   </widget>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -152,17 +142,19 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="MeiTuShop.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>Push_Lv1</sender>
    <signal>clicked()</signal>
-   <receiver>BeautyWhoClass</receiver>
+   <receiver>MeiTuShopClass</receiver>
    <slot>slot1()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>347</x>
-     <y>563</y>
+     <x>190</x>
+     <y>576</y>
     </hint>
     <hint type="destinationlabel">
      <x>174</x>
@@ -173,12 +165,12 @@
   <connection>
    <sender>Push_Lv2</sender>
    <signal>clicked()</signal>
-   <receiver>BeautyWhoClass</receiver>
+   <receiver>MeiTuShopClass</receiver>
    <slot>slot2()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>531</x>
-     <y>563</y>
+     <x>424</x>
+     <y>606</y>
     </hint>
     <hint type="destinationlabel">
      <x>388</x>
@@ -189,12 +181,12 @@
   <connection>
    <sender>Push_Lv3</sender>
    <signal>clicked()</signal>
-   <receiver>BeautyWhoClass</receiver>
+   <receiver>MeiTuShopClass</receiver>
    <slot>slot3()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>687</x>
-     <y>563</y>
+     <x>538</x>
+     <y>577</y>
     </hint>
     <hint type="destinationlabel">
      <x>534</x>
@@ -205,12 +197,12 @@
   <connection>
    <sender>Push_Lv4</sender>
    <signal>clicked()</signal>
-   <receiver>BeautyWhoClass</receiver>
+   <receiver>MeiTuShopClass</receiver>
    <slot>slot4()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>843</x>
-     <y>563</y>
+     <x>792</x>
+     <y>587</y>
     </hint>
     <hint type="destinationlabel">
      <x>777</x>
@@ -221,32 +213,16 @@
   <connection>
    <sender>push_face</sender>
    <signal>clicked()</signal>
-   <receiver>BeautyWhoClass</receiver>
+   <receiver>MeiTuShopClass</receiver>
    <slot>face()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>999</x>
-     <y>563</y>
+     <x>960</x>
+     <y>583</y>
     </hint>
     <hint type="destinationlabel">
      <x>958</x>
      <y>472</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>Open</sender>
-   <signal>clicked()</signal>
-   <receiver>BeautyWhoClass</receiver>
-   <slot>open_pic()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>151</x>
-     <y>509</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>71</x>
-     <y>454</y>
     </hint>
    </hints>
   </connection>
@@ -257,7 +233,5 @@
   <slot>slot3()</slot>
   <slot>slot4()</slot>
   <slot>face()</slot>
-  <slot>slot5()</slot>
-  <slot>open_pic()</slot>
  </slots>
 </ui>
