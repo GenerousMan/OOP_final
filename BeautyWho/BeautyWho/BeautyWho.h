@@ -1,5 +1,6 @@
 #pragma once
-
+#ifndef BEAUTYWHO_H
+#define BEAUTYWHO_H
 #include <QtWidgets/QMainWindow>
 #include "ui_BeautyWho.h"
 #include "opencv2/opencv.hpp"
@@ -19,3 +20,5 @@ private:
 	Ui::BeautyWhoClass *ui;
 	QLabel *label;
 };
+
+#endif //OOP_FINAL_BEAUTYWHO_H
