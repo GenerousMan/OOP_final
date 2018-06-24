@@ -1,10 +1,10 @@
 #pragma once
+
 #ifndef BEAUTYWHO_H
 #define BEAUTYWHO_H
+
 #include <QtWidgets/QMainWindow>
 #include "ui_BeautyWho.h"
-#include "opencv2/opencv.hpp"
-using namespace cv;
 
 class BeautyWho : public QMainWindow
 {
@@ -15,10 +15,14 @@ public:
 
 private slots:
 	void open_pic();
+	void gray_pic();
+	void white_pic();
 
 private:
 	Ui::BeautyWhoClass *ui;
-	QLabel *label;
+	QLabel  *label;
+	void show_image(QImage *img);
+	bool judge();
 };
 
 #endif //OOP_FINAL_BEAUTYWHO_H

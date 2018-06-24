@@ -52,4 +52,9 @@
       <Filter>Resource Files</Filter>
     </QtRcc>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Backend\ImageProcess.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>
