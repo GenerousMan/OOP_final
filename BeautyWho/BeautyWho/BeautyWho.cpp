@@ -3,16 +3,26 @@
 #include <QMessageBox>
 #include"./Backend/ImageProcess.h"
 
+#define OPEN_FILE    0
+#define GRAY         1
+#define WHITE        2
+#define CHNAGE_LIGHT 3
+#define ROTATE       4
+
 QImage *img = new QImage;
 bool opened_file = false;
-
+int curr_event = OPEN_FILE;
 BeautyWho::BeautyWho(QWidget *parent)
 	: QMainWindow(parent)
 {
+	//ui->dockWidget->setFeatures(QDockWidget::AllDockWidgetFeatures);
+	//ui->dockWidget->setAllowedAreas(Qt::AllDockWidgetAreas);
+	//ui->dockWidget->setMaximumSize(300, 3000);
 	ui->setupUi(this);
 }
 
 void BeautyWho::open_pic() {
+	curr_event = OPEN_FILE;
 	QString filename;
 	filename = QFileDialog::getOpenFileName(this,
 		tr("choose an image"),
@@ -25,16 +35,16 @@ void BeautyWho::open_pic() {
 	else
 	{
 
-		if (!(img->load(filename))) //¼ÓÔØÍ¼Ïñ
+		if (!(img->load(filename))) //åŠ è½½å›¾åƒ
 		{
 			QMessageBox::information(this,
-				tr("´ò¿ªÍ¼ÏñÊ§°Ü"),
-				tr("´ò¿ªÍ¼ÏñÊ§°Ü!"));
+				tr("æ‰“å¼€å›¾åƒå¤±è´¥"),
+				tr("æ‰“å¼€å›¾åƒå¤±è´¥!"));
 			delete img;
 			return;
 		}
 		opened_file = true;
-		show_image(img, false);
+		show_image(img, 0);
 	}
 }
 
@@ -59,19 +69,56 @@ bool BeautyWho::judge()  {
 }
 
 void BeautyWho::gray_pic() {
+	curr_event = GRAY;
 	if (judge()) {
 		ImageProcessor n_img = *img;
 		auto nn_img = n_img.gray();
-		show_image(&(nn_img.to_QImage()), true);
+		show_image(&(nn_img.to_QImage()), 1);
 	}
 }
 
 void BeautyWho::white_pic() {
+	curr_event = WHITE;
 	if (judge()) {
 		ImageProcessor n_img = *img;
 		auto nn_img = n_img.hue(-50);
-		QLabel *l = new QLabel();
-		l->setPixmap(QPixmap::fromImage(nn_img.to_QImage()));
-		l->show();
+		show_image(&(nn_img.to_QImage()), 1);
+	}
+}
+
+void BeautyWho::on_Push_Lv3_clicked() {
+	curr_event = CHNAGE_LIGHT;
+	ui->horizontalSlider->setRange(0, 255);
+}
+
+void BeautyWho::on_Push_Lv4_clicked() {
+	curr_event = ROTATE;
+	ui->horizontalSlider->setRange(0, 359);
+}
+void BeautyWho::onSliderValueChanged(int i) {
+	switch (curr_event) {
+		case (CHNAGE_LIGHT):
+			change_light(i);
+			break;
+		case (ROTATE):
+			rotate(i);
+			break;
+		default:
+			break;
+	}
+}
+void BeautyWho::change_light(int beta){
+	if (judge()){
+		ImageProcessor n_img = *img;
+		auto nn_img = n_img.light(beta);
+		show_image(&(nn_img.to_QImage()),1); 
+	}
+}
+
+void BeautyWho::rotate(int angle) {
+	if (judge()) {
+		ImageProcessor n_img = *img;
+		auto nn_img = n_img.rotation(angle);
+		show_image(&(nn_img.to_QImage()), 1);
 	}
 }

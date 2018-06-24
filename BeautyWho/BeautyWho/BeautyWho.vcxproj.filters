@@ -56,5 +56,8 @@
     <ClInclude Include="Backend\ImageProcess.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_BeautyWho.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
