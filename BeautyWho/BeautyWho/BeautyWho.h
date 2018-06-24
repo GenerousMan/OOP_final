@@ -20,9 +20,8 @@ private slots:
 
 private:
 	Ui::BeautyWhoClass *ui;
-	QLabel  *label;
-	void show_image(QImage *img);
-	bool judge();
+	void show_image(QImage *img,bool pic) const;
+	bool judge() ;
 };
 
 #endif //OOP_FINAL_BEAUTYWHO_H

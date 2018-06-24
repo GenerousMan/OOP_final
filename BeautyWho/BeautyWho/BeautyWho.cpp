@@ -15,7 +15,7 @@ BeautyWho::BeautyWho(QWidget *parent)
 void BeautyWho::open_pic() {
 	QString filename;
 	filename = QFileDialog::getOpenFileName(this,
-		tr("Ñ¡ÔñÍ¼Ïñ"),
+		tr("choose an image"),
 		"",
 		tr("Images (*.png *.bmp *.jpg *.tif *.GIF )"));
 	if (filename.isEmpty())
@@ -34,24 +34,24 @@ void BeautyWho::open_pic() {
 			return;
 		}
 		opened_file = true;
-		label = new QLabel();
-		label->setPixmap(QPixmap::fromImage(*img));
-		label->resize(QSize(img->width(), img->height()));
-		ui->picbefore->setWidget(label);
+		show_image(img, false);
 	}
 }
 
-void BeautyWho::show_image(QImage *img) {
-	label = new QLabel();
+void BeautyWho::show_image(QImage *img, bool pic)const {
+	QLabel *label = new QLabel();
 	label->setPixmap(QPixmap::fromImage(*img));
 	label->resize(QSize(img->width(), img->height()));
-	ui->picafter->setWidget(label);
+	if (pic)
+		ui->picafter->setWidget(label);
+	else
+		ui->picbefore->setWidget(label);
 }
 
-bool BeautyWho::judge() {
+bool BeautyWho::judge()  {
 	if (!opened_file) {
 		QMessageBox::information(this,
-			tr("Error"),
+			tr("Wanning"),
 			tr("No images have been opened yet."));
 		return false;
 	}
@@ -62,18 +62,16 @@ void BeautyWho::gray_pic() {
 	if (judge()) {
 		ImageProcessor n_img = *img;
 		auto nn_img = n_img.gray();
-		QImage a = nn_img.to_QImage();
-		QImage *b = &a;
-		show_image(b);
+		show_image(&(nn_img.to_QImage()), true);
 	}
 }
 
 void BeautyWho::white_pic() {
 	if (judge()) {
 		ImageProcessor n_img = *img;
-		auto nn_img = n_img.white_balance();
-		QImage a = nn_img.to_QImage();
-		QImage *b = &a;
-		show_image(b);
+		auto nn_img = n_img.hue(-50);
+		QLabel *l = new QLabel();
+		l->setPixmap(QPixmap::fromImage(nn_img.to_QImage()));
+		l->show();
 	}
 }
