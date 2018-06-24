@@ -15,37 +15,7 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
-     <widget class="QScrollArea" name="picbefore">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="widgetResizable">
-       <bool>true</bool>
-      </property>
-      <widget class="QWidget" name="scrollAreaWidgetContents">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>535</width>
-         <height>525</height>
-        </rect>
-       </property>
-      </widget>
-     </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QLabel" name="Pic_After">
-      <property name="text">
-       <string>效果图</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0" colspan="2">
+    <item row="1" column="0" colspan="3">
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="QPushButton" name="Open">
@@ -69,7 +39,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>滤镜1</string>
+         <string>灰度</string>
         </property>
        </widget>
       </item>
@@ -82,7 +52,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>滤镜2</string>
+         <string>白化</string>
         </property>
        </widget>
       </item>
@@ -127,6 +97,78 @@
       </item>
      </layout>
     </item>
+    <item row="0" column="0">
+     <widget class="QScrollArea" name="picbefore">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>531</width>
+         <height>550</height>
+        </rect>
+       </property>
+       <widget class="QLabel" name="label">
+        <property name="geometry">
+         <rect>
+          <x>230</x>
+          <y>280</y>
+          <width>72</width>
+          <height>15</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>原图</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QScrollArea" name="picafter">
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents_2">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>531</width>
+         <height>550</height>
+        </rect>
+       </property>
+       <widget class="QLabel" name="label_2">
+        <property name="geometry">
+         <rect>
+          <x>240</x>
+          <y>280</y>
+          <width>72</width>
+          <height>15</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>效果图</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -137,43 +179,15 @@
     <bool>false</bool>
    </attribute>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
+  <action name="action_open">
+   <property name="text">
+    <string>open</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections>
-  <connection>
-   <sender>Push_Lv1</sender>
-   <signal>clicked()</signal>
-   <receiver>BeautyWhoClass</receiver>
-   <slot>slot1()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>347</x>
-     <y>563</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>174</x>
-     <y>418</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>Push_Lv2</sender>
-   <signal>clicked()</signal>
-   <receiver>BeautyWhoClass</receiver>
-   <slot>slot2()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>531</x>
-     <y>563</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>388</x>
-     <y>476</y>
-    </hint>
-   </hints>
-  </connection>
   <connection>
    <sender>Push_Lv3</sender>
    <signal>clicked()</signal>
@@ -229,12 +243,44 @@
    <slot>open_pic()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>151</x>
-     <y>509</y>
+     <x>163</x>
+     <y>587</y>
     </hint>
     <hint type="destinationlabel">
      <x>71</x>
      <y>454</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Push_Lv1</sender>
+   <signal>clicked()</signal>
+   <receiver>BeautyWhoClass</receiver>
+   <slot>gray_pic()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>286</x>
+     <y>571</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>344</x>
+     <y>555</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Push_Lv2</sender>
+   <signal>clicked()</signal>
+   <receiver>BeautyWhoClass</receiver>
+   <slot>white_pic()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>484</x>
+     <y>566</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>499</x>
+     <y>597</y>
     </hint>
    </hints>
   </connection>
@@ -247,5 +293,8 @@
   <slot>face()</slot>
   <slot>slot5()</slot>
   <slot>open_pic()</slot>
+  <slot>gray_pic()</slot>
+  <slot>slot7()</slot>
+  <slot>white_pic()</slot>
  </slots>
 </ui>

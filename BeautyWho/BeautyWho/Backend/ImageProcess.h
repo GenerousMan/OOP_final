@@ -182,9 +182,9 @@ ImageProcessor &ImageProcessor::operator=(const cv::Mat &img) {
 }
 
 ImageProcessor ImageProcessor::gray() const {
-    auto temp_img = cv::Mat();
+    cv::Mat temp_img;
     cv::cvtColor(m_img, temp_img, cv::COLOR_BGR2GRAY);
-    auto final_img = cv::Mat();
+    cv::Mat final_img;
     cv::cvtColor(temp_img, final_img, cv::COLOR_GRAY2BGR);
     return final_img;
 }
@@ -365,3 +365,4 @@ ImageProcessor ImageProcessor::hue(const char shift) const {
 }
 
 #endif //OOP_FINAL_IMAGEPROCESS_H
+
