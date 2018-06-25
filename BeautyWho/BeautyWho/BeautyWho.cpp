@@ -2,9 +2,8 @@
 #include <QFileDialog>  
 #include <QMessageBox>
 #include"./Backend/ImageProcess.h"
-#include <string>
 
-enum{OPEN_FILE,GRAY,WHITE,CHANGE_LIGHT,ROTATE,WHITE_BALANCE, NOTHING};// current event
+enum{OPEN_FILE,GRAY,WHITE,CHANGE_LIGHT,ROTATE,NOTHING};// current event
 ImageProcessor img;//original picture
 bool opened_file = false; 
 int curr_event=NOTHING;
@@ -13,12 +12,9 @@ BeautyWho::BeautyWho(QWidget *parent)
 	: QMainWindow(parent)
 {
 	ui->setupUi(this);
-	ui->dockWidget->setMinimumSize(300, 300);
-	ui->dockWidget->setMaximumSize(300, 300);
 }
 
 void BeautyWho::open_clicked() {
-	ui->label_3->setText("");
 	if (curr_event != NOTHING) {
 		QLabel *label = new QLabel();
 		ui->picafter->setWidget(label);
@@ -35,8 +31,7 @@ void BeautyWho::open_clicked() {
 	}
 	else
 	{	
-		QByteArray cdata = filename.toLocal8Bit();
-		img = cv::imread(std::string(cdata));
+		img = cv::imread(filename.toStdString());
 		opened_file = true;
 		show_image(&img.to_QImage(), 0);
 	}
@@ -63,7 +58,6 @@ bool BeautyWho::judge()  {
 }
 
 void BeautyWho::gray_clicked() {
-	ui->label_3->setText("");
 	curr_event = GRAY;
 	if (judge()) {
 		ImageProcessor n_img = img;
@@ -73,14 +67,11 @@ void BeautyWho::gray_clicked() {
 }
 
 void BeautyWho::white_clicked() {
-	ui->label_3->setText(tr("变白程度(1-30)"));
 	curr_event = WHITE; 
 	ui->horizontalSlider->setRange(1, 30);
 }
 
 void BeautyWho::white_balance_clicked() {
-	ui->label_3->setText("");
-	curr_event = WHITE_BALANCE;
 	if (judge()) {
 		ImageProcessor n_img = img;
 		auto nn_img = n_img.white_balance();
@@ -89,13 +80,11 @@ void BeautyWho::white_balance_clicked() {
 }
 
 void BeautyWho::bright_clicked() {
-	ui->label_3->setText(tr("调节亮度(0-255)"));
 	curr_event = CHANGE_LIGHT;
 	ui->horizontalSlider->setRange(0, 255);
 }
 
 void BeautyWho::rotate_clicked() {
-	ui->label_3->setText(tr("旋转角度(0-359)"));
 	curr_event = ROTATE;
 	ui->horizontalSlider->setRange(0, 359);
 }
