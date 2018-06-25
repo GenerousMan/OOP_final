@@ -14,7 +14,7 @@ BeautyWho::BeautyWho(QWidget *parent)
 {
 	ui->setupUi(this);
 	ui->dockWidget->setMinimumSize(300, 300);
-	ui->dockWidget->setMaximumSize(300, 300);
+
 }
 
 void BeautyWho::open_clicked() {
@@ -73,7 +73,9 @@ void BeautyWho::gray_clicked() {
 }
 
 void BeautyWho::white_clicked() {
-	ui->label_3->setText(tr("变白程度(1-30)"));
+	QString str;
+	str = str.fromLocal8Bit("变白程度");
+	ui->label_3->setText(str);
 	curr_event = WHITE;
 	ui->horizontalSlider->setRange(1, 30);
 }
@@ -89,13 +91,17 @@ void BeautyWho::white_balance_clicked() {
 }
 
 void BeautyWho::bright_clicked() {
-	ui->label_3->setText(tr("调节亮度(0-255)"));
+	QString str;
+	str = str.fromLocal8Bit("调节亮度");
+	ui->label_3->setText(str);
 	curr_event = CHANGE_LIGHT;
-	ui->horizontalSlider->setRange(0, 255);
+	ui->horizontalSlider->setRange(-255, 255);
 }
 
 void BeautyWho::rotate_clicked() {
-	ui->label_3->setText(tr("旋转角度(0-359)"));
+	QString str;
+	str = str.fromLocal8Bit("旋转角度");
+	ui->label_3->setText(str);
 	curr_event = ROTATE;
 	ui->horizontalSlider->setRange(0, 359);
 }
