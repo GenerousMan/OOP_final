@@ -43,7 +43,7 @@ public:
     ImageProcessor rotation(double angle) const;//BEEN DONE
 
     // Crop image
-    ImageProcessor crop(cv::Rect rect);
+    ImageProcessor crop(cv::Rect rect);					//DOESNT USE
 
     // TO gray image.
     ImageProcessor gray() const;							//BEEN DONE
@@ -55,22 +55,22 @@ public:
     ImageProcessor light(double beta) const;	//BEEN DONE
 
     // Auto histogram equalize
-    ImageProcessor histogram_equalize() const;
+    ImageProcessor histogram_equalize() const; // DOESNT USE
 
     // Auto enhance by Laplace operator
-    ImageProcessor enhance() const;
+    ImageProcessor enhance() const;				//BEEN DONE
 
-    ImageProcessor log_enhance() const;
+    ImageProcessor log_enhance() const;  //NOT USE
 
-    ImageProcessor gamma_adjust() const;
+    ImageProcessor gamma_adjust() const;// BEEN DONE
 
     // Detail keep butter to be intensity/3
     // intensity = 10 seems good.
-    ImageProcessor buffing(int intensity = 10, int detail_keep = 3) const;
+    ImageProcessor buffing(int intensity = 10, int detail_keep = 3) const; //BEEN DONE
 
     // Whiten skin, beta is streng of whitening.
     // beta=2 means no change.
-    ImageProcessor whitening(double beta = 2) const;
+    ImageProcessor whitening(double beta = 2) const;	//BEEN DONE
 
     // Adjust saturate
     // shift is shift value in (-255, 255)
@@ -78,7 +78,7 @@ public:
 
     //Adjust hue
     // shift is shift value in (-255, 255)
-    ImageProcessor hue(char shift = 20) const; 
+    ImageProcessor hue(char shift = 20) const; // BEEN DONE
 
     // Auto white balance
     ImageProcessor white_balance() const;//BEEN DONE

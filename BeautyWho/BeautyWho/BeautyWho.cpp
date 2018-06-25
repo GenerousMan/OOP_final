@@ -4,7 +4,8 @@
 #include"./Backend/ImageProcess.h"
 #include <string>
 
-enum { OPEN_FILE, GRAY, WHITE, CHANGE_LIGHT, ROTATE, WHITE_BALANCE, NOTHING,HUE, CHANGE_PIC };// current event
+enum { OPEN_FILE, GRAY, WHITE, CHANGE_LIGHT, ROTATE, WHITE_BALANCE, 
+	NOTHING,HUE, CHANGE_PIC,BUFFERING,ENHANCE,GAMMA,SATURATION};// current event
 enum {LEFT,RIGHT};
 ImageProcessor img;
 ImageProcessor nn_img;
@@ -72,11 +73,58 @@ void BeautyWho::show_image(QImage *img, bool pic)const {
 bool BeautyWho::judge() {
 	if (!opened_file) {
 		QMessageBox::information(this,
-			tr("出现错误"),
-			tr("您还没有打开图片"));
+			tr("鍑虹幇閿欒"),
+			tr("鎮ㄨ繕娌℃湁鎵撳紑鍥剧墖"));
 		return false;
 	}
 	return true;
+}
+
+void BeautyWho::onSliderValueChanged(int i) {
+	if (!ui->dockWidget->isVisible())
+		return;
+	switch (curr_event) {
+	case CHANGE_LIGHT:
+		change_light(i);
+		break;
+	case ROTATE:
+		rotate(i);
+		break;
+	case WHITE:
+		white((i + 1000) / 1000.0);
+		break;
+	case HUE:
+		hue(i);
+		break;
+	case BUFFERING:
+		buffering(i);
+		break;
+	case SATURATION:
+		saturation(i);
+		break;
+	default:
+		break;
+	}
+}
+
+void BeautyWho::gamma_clicked() {
+	hide_widget();
+	curr_event = GAMMA;
+	if (judge()) {
+		ImageProcessor n_img = img;
+		nn_img = n_img.gamma_adjust();
+		show_image(&(nn_img.to_QImage()), RIGHT);
+	}
+}
+
+void BeautyWho::enhance_clicked() {
+	hide_widget();
+	curr_event = ENHANCE;
+	if (judge()) {
+		ImageProcessor n_img = img;
+		nn_img = n_img.enhance();
+		show_image(&(nn_img.to_QImage()), RIGHT);
+	}
 }
 
 void BeautyWho::gray_clicked() {
@@ -100,77 +148,44 @@ void BeautyWho::white_balance_clicked() {
 }
 
 void BeautyWho::white_clicked() {
-	show_widget("变白程度");
-	curr_event = WHITE;
-	ui->horizontalSlider->setRange(1, 280);
+	if (judge()) {
+		show_widget("鍙樼櫧绋嬪害");
+		curr_event = WHITE;
+		ui->horizontalSlider->setRange(1, 280);
+	}
+	
 }
 
 void BeautyWho::bright_clicked() {
-	show_widget("调节亮度");
-	curr_event = CHANGE_LIGHT;
-	ui->horizontalSlider->setRange(-255, 255);
+	if (judge()) {
+		show_widget("璋冭妭浜害");
+		curr_event = CHANGE_LIGHT;
+		ui->horizontalSlider->setRange(-255, 255);
+	}
+	
 }
 
 void BeautyWho::rotate_clicked() {
-	show_widget("旋转角度");
-	curr_event = ROTATE;
-	ui->horizontalSlider->setRange(0, 359);
-}
-void BeautyWho::onSliderValueChanged(int i) {
-	if (!ui->dockWidget->isVisible())
-		return;
-	switch (curr_event) {
-	case CHANGE_LIGHT:
-		change_light(i);
-		break;
-	case ROTATE:
-		rotate(i);
-		break;
-	case WHITE:
-		white((i + 1000) / 1000.0);
-		break;
-	case HUE:
-		hue(i);
-		break;
-	default:
-		break;
-	}
-}
-void BeautyWho::change_light(int beta) {
-	if (judge()) {
-		ImageProcessor n_img = img;
-		nn_img = n_img.light(beta);
-		show_image(&(nn_img.to_QImage()), RIGHT);
-	}
-}
-
-void BeautyWho::rotate(int angle) {
-	if (judge()) {
-		ImageProcessor n_img = img;
-		nn_img = n_img.rotation(angle);
-		show_image(&(nn_img.to_QImage()), RIGHT);
-	}
-}
-
-void BeautyWho::white(double beta) {
-	if (judge()) {
-		ImageProcessor n_img = img;
-		nn_img = n_img.whitening(beta);
-		show_image(&(nn_img.to_QImage()), RIGHT);
+	if (judge()){
+		show_widget("鏃嬭浆瑙掑害");
+		curr_event = ROTATE;
+		ui->horizontalSlider->setRange(0, 359);
 	}
 }
 
 void BeautyWho::hue_clicked() {
-	show_widget("饱和度调整");
-	curr_event = HUE;
-	ui->horizontalSlider->setRange(0, 120);
+	if (judge()) {
+		show_widget("鑹插僵璋冩暣");
+		curr_event = HUE;
+		ui->horizontalSlider->setRange(0, 120);
+	}
 }
 
-void BeautyWho::hue(int a) {
+void BeautyWho::buffering_clicked() {
 	if (judge()) {
-		ImageProcessor n_img = img;
-		nn_img = n_img.hue(a);
-		show_image(&(nn_img.to_QImage()), RIGHT);
+		show_widget("纾ㄧ毊绋嬪害");
+		curr_event = BUFFERING;
+		ui->horizontalSlider->setRange(4,11);
 	}
 }
 
@@ -180,5 +195,55 @@ void BeautyWho::change_pic() {
 	if (judge()) {
 		img = nn_img;
 		show_image(&(nn_img.to_QImage()), LEFT);
+	}
+}
+
+void BeautyWho::change_light(int beta) {
+	
+		ImageProcessor n_img = img;
+		nn_img = n_img.light(beta);
+		show_image(&(nn_img.to_QImage()), RIGHT);
+	
+}
+
+void BeautyWho::rotate(int angle) {
+	
+		ImageProcessor n_img = img;
+		nn_img = n_img.rotation(angle);
+		show_image(&(nn_img.to_QImage()), RIGHT);
+	
+}
+
+void BeautyWho::white(double beta) {
+	
+		ImageProcessor n_img = img;
+		nn_img = n_img.whitening(beta);
+		show_image(&(nn_img.to_QImage()), RIGHT);
+	
+}
+
+void BeautyWho::buffering(int i) {
+		ImageProcessor n_img = img;
+		nn_img = n_img.buffing(i, i / 3);
+		show_image(&(nn_img.to_QImage()), RIGHT);
+}
+
+void BeautyWho::hue(int a) {
+		ImageProcessor n_img = img;
+		nn_img = n_img.hue(a);
+		show_image(&(nn_img.to_QImage()), RIGHT);
+}
+
+void BeautyWho::saturation(int a) {
+	ImageProcessor n_img = img;
+	nn_img = n_img.saturation(a);
+	show_image(&(nn_img.to_QImage()), RIGHT);
+}
+
+void BeautyWho::saturation_clicked() {
+	if (judge()) {
+		show_widget("");
+		curr_event = SATURATION;
+		ui->horizontalSlider->setRange(0, 120);
 	}
 }

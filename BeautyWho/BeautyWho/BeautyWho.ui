@@ -35,8 +35,8 @@
         </property>
         <property name="geometry">
          <rect>
-          <x>140</x>
-          <y>190</y>
+          <x>210</x>
+          <y>270</y>
           <width>251</width>
           <height>81</height>
          </rect>
@@ -64,7 +64,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="gray_button">
+       <widget class="QPushButton" name="White_button_2">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
           <horstretch>0</horstretch>
@@ -72,7 +72,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>灰度</string>
+         <string>磨皮</string>
         </property>
        </widget>
       </item>
@@ -103,7 +103,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="rotate_button">
+       <widget class="QPushButton" name="push_face_2">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
           <horstretch>0</horstretch>
@@ -111,7 +111,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>旋转</string>
+         <string>饱和度调整</string>
         </property>
        </widget>
       </item>
@@ -124,7 +124,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>饱和度调整</string>
+         <string>色彩调整</string>
         </property>
        </widget>
       </item>
@@ -132,7 +132,7 @@
     </item>
     <item row="2" column="0" colspan="2">
      <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="0">
+      <item row="1" column="2">
        <widget class="QPushButton" name="open_button_2">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
@@ -145,7 +145,20 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="1">
+      <item row="1" column="9">
+       <widget class="QPushButton" name="rotat_button_2">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>滤镜：黯淡</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
        <widget class="QPushButton" name="change_button">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -158,20 +171,7 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="2">
-       <widget class="QPushButton" name="White_button_2">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>白化</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="3">
+      <item row="1" column="8">
        <widget class="QPushButton" name="bright_button_2">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
@@ -180,12 +180,25 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>调节亮度</string>
+         <string>滤镜：闪耀</string>
         </property>
        </widget>
       </item>
-      <item row="0" column="4">
-       <widget class="QPushButton" name="rotat_button_2">
+      <item row="1" column="10">
+       <widget class="QPushButton" name="gray_button">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>滤镜：黑白</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QPushButton" name="rotate_button">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
           <horstretch>0</horstretch>
@@ -194,19 +207,6 @@
         </property>
         <property name="text">
          <string>旋转</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="5">
-       <widget class="QPushButton" name="push_face_2">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>人脸识别</string>
         </property>
        </widget>
       </item>
@@ -235,8 +235,8 @@
        <widget class="QLabel" name="label">
         <property name="geometry">
          <rect>
-          <x>180</x>
-          <y>200</y>
+          <x>210</x>
+          <y>270</y>
           <width>161</width>
           <height>71</height>
          </rect>
@@ -268,7 +268,7 @@
    </property>
    <property name="minimumSize">
     <size>
-     <width>68</width>
+     <width>71</width>
      <height>60</height>
     </size>
    </property>
@@ -377,10 +377,8 @@
   <tabstop>horizontalSlider</tabstop>
   <tabstop>picafter</tabstop>
   <tabstop>open_button</tabstop>
-  <tabstop>gray_button</tabstop>
   <tabstop>White_button</tabstop>
   <tabstop>bright_button</tabstop>
-  <tabstop>rotate_button</tabstop>
   <tabstop>push_face</tabstop>
   <tabstop>picbefore</tabstop>
  </tabstops>
@@ -441,8 +439,8 @@
    <slot>gray_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>311</x>
-     <y>710</y>
+     <x>1236</x>
+     <y>774</y>
     </hint>
     <hint type="destinationlabel">
      <x>273</x>
@@ -473,8 +471,8 @@
    <slot>white_balance_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>104</x>
-     <y>747</y>
+     <x>527</x>
+     <y>774</y>
     </hint>
     <hint type="destinationlabel">
      <x>198</x>
@@ -489,8 +487,8 @@
    <slot>rotate_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>927</x>
-     <y>710</y>
+     <x>311</x>
+     <y>747</y>
     </hint>
     <hint type="destinationlabel">
      <x>616</x>
@@ -521,12 +519,92 @@
    <slot>change_pic()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>316</x>
-     <y>760</y>
+     <x>209</x>
+     <y>774</y>
     </hint>
     <hint type="destinationlabel">
      <x>624</x>
      <y>393</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>White_button_2</sender>
+   <signal>clicked()</signal>
+   <receiver>BeautyWhoClass</receiver>
+   <slot>buffering_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>340</x>
+     <y>718</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>570</x>
+     <y>743</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>bright_button_2</sender>
+   <signal>clicked()</signal>
+   <receiver>BeautyWhoClass</receiver>
+   <slot>histogram_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>825</x>
+     <y>774</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>810</x>
+     <y>780</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>bright_button_2</sender>
+   <signal>clicked()</signal>
+   <receiver>BeautyWhoClass</receiver>
+   <slot>enhance_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>682</x>
+     <y>763</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>450</x>
+     <y>777</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>rotat_button_2</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>BeautyWhoClass</receiver>
+   <slot>gamma_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>989</x>
+     <y>755</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1021</x>
+     <y>780</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>push_face_2</sender>
+   <signal>clicked()</signal>
+   <receiver>BeautyWhoClass</receiver>
+   <slot>saturation_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>870</x>
+     <y>713</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>858</x>
+     <y>705</y>
     </hint>
    </hints>
   </connection>
@@ -550,5 +628,11 @@
   <slot>rotate_clicked()</slot>
   <slot>hue_clicked()</slot>
   <slot>change_pic()</slot>
+  <slot>slot1()</slot>
+  <slot>slot2()</slot>
+  <slot>buffering_clicked()</slot>
+  <slot>enhance_clicked()</slot>
+  <slot>gamma_clicked()</slot>
+  <slot>saturation_clicked()</slot>
  </slots>
 </ui>

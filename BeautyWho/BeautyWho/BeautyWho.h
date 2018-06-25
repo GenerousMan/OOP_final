@@ -22,10 +22,14 @@ private slots:
 	void hue_clicked();
 	void gray_clicked();
 	void white_clicked();
+	void buffering_clicked();
 	void white_balance_clicked();
 	void onSliderValueChanged(int i);
 	void change_pic();
-	
+	void enhance_clicked();
+	void gamma_clicked();
+	void saturation_clicked();
+
 private:
 	Ui::BeautyWhoClass *ui;
 	void show_image(QImage *img,bool pic) const;
@@ -34,6 +38,8 @@ private:
 	bool judge() ;
 	void white(double beta);
 	void hue(int a);
+	void buffering(int a);
+	void saturation(int a);
 };
 
 #endif //OOP_FINAL_BEAUTYWHO_H
