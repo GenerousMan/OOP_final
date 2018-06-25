@@ -86,6 +86,16 @@ public:
     // convert to QImage, return a copy;
     QImage to_QImage(QImage::Format format = QImage::Format_RGB888) const;
 
+	QImage* ImageProcessor::to_pQImage(QImage::Format format = QImage::Format_RGB888) const {
+		cv::Mat temp_img;
+		cv::cvtColor(m_img, temp_img, cv::COLOR_BGR2RGB);
+		cv::namedWindow("TEST");
+		cv::imshow("TEST", m_img);
+		cv::waitKey(0);
+		QImage* p = new QImage(temp_img.data, temp_img.cols, temp_img.rows,
+			static_cast<int>(temp_img.step), format);
+		return p;
+	}
     ~ImageProcessor() = default;
 
 
@@ -145,47 +155,51 @@ ImageProcessor ImageProcessor::crop(cv::Rect rect) {
 }
 
 QImage ImageProcessor::to_QImage(QImage::Format format) const {
-	// 8-bits unsigned, NO. OF CHANNELS = 1  
-	if (m_img.type() == CV_8UC1)
-	{
-		QImage image(m_img.cols, m_img.rows, QImage::Format_Indexed8);
-		// Set the color table (used to translate colour indexes to qRgb values)  
-		image.setColorCount(256);
-		for (int i = 0; i < 256; i++)
-		{
-			image.setColor(i, qRgb(i, i, i));
-		}
-		// Copy input Mat  
-		uchar *pSrc = m_img.data;
-		for (int row = 0; row < m_img.rows; row++)
-		{
-			uchar *pDest = image.scanLine(row);
-			memcpy(pDest, pSrc, m_img.cols);
-			pSrc += m_img.step;
-		}
-		return image;
-	}
-	// 8-bits unsigned, NO. OF CHANNELS = 3  
-	else if (m_img.type() == CV_8UC3)
-	{
-		// Copy input Mat  
-		const uchar *pSrc = (const uchar*)m_img.data;
-		// Create QImage with same dimensions as input Mat  
-		QImage image(pSrc, m_img.cols, m_img.rows, m_img.step, QImage::Format_RGB888);
-		return image.rgbSwapped();
-	}
-	else if (m_img.type() == CV_8UC4)
-	{
-		// Copy input Mat  
-		const uchar *pSrc = (const uchar*)m_img.data;
-		// Create QImage with same dimensions as input Mat  
-		QImage image(pSrc, m_img.cols, m_img.rows, m_img.step, QImage::Format_ARGB32);
-		return image.copy();
-	}
-	else
-	{
-		return QImage();
-	}
+	cv::Mat temp_img;
+    cv::cvtColor(m_img, temp_img, cv::COLOR_BGR2RGB);
+	return QImage(temp_img.data, temp_img.cols, temp_img.rows,
+                  static_cast<int>(temp_img.step), format).copy();
+	//// 8-bits unsigned, NO. OF CHANNELS = 1  
+	//if (m_img.type() == CV_8UC1)
+	//{
+	//	QImage image(m_img.cols, m_img.rows, QImage::Format_Indexed8);
+	//	// Set the color table (used to translate colour indexes to qRgb values)  
+	//	image.setColorCount(256);
+	//	for (int i = 0; i < 256; i++)
+	//	{
+	//		image.setColor(i, qRgb(i, i, i));
+	//	}
+	//	// Copy input Mat  
+	//	uchar *pSrc = m_img.data;
+	//	for (int row = 0; row < m_img.rows; row++)
+	//	{
+	//		uchar *pDest = image.scanLine(row);
+	//		memcpy(pDest, pSrc, m_img.cols);
+	//		pSrc += m_img.step;
+	//	}
+	//	return image;
+	//}
+	//// 8-bits unsigned, NO. OF CHANNELS = 3  
+	//else if (m_img.type() == CV_8UC3)
+	//{
+	//	// Copy input Mat  
+	//	const uchar *pSrc = (const uchar*)m_img.data;
+	//	// Create QImage with same dimensions as input Mat  
+	//	QImage image(pSrc, m_img.cols, m_img.rows, m_img.step, QImage::Format_RGB888);
+	//	return image.rgbSwapped();
+	//}
+	//else if (m_img.type() == CV_8UC4)
+	//{
+	//	// Copy input Mat  
+	//	const uchar *pSrc = (const uchar*)m_img.data;
+	//	// Create QImage with same dimensions as input Mat  
+	//	QImage image(pSrc, m_img.cols, m_img.rows, m_img.step, QImage::Format_ARGB32);
+	//	return image.copy();
+	//}
+	//else
+	//{
+	//	return QImage();
+	//}
 }
 
 ImageProcessor::operator QImage() const {
@@ -197,30 +211,36 @@ ImageProcessor::operator cv::Mat() const {
 }
 
 ImageProcessor::ImageProcessor(QImage const &img, unsigned int format) {
-    auto temp_img = cv::Mat(img.height(), img.width(), format, const_cast<uchar *>(img.bits()),
+	auto temp_img = cv::Mat(img.height(), img.width(), format, const_cast<uchar *>(img.bits()),
                             static_cast<size_t>(img.bytesPerLine())).clone();
-    cv::cvtColor(temp_img, m_img, CV_RGB2BGR);
+	/*cv::cvtColor(temp_img, m_img, CV_RGB2BGR);
+	cv::namedWindow("TEST");
+	cv::imshow("TEST", m_img);
+	cv::waitKey(0);*/
 }
 
-ImageProcessor& ImageProcessor::operator=(QImage const &image) {
-	cv::Mat mat;
-	switch (image.format())
-	{
-	case QImage::Format_ARGB32:
-	case QImage::Format_RGB32:
-	case QImage::Format_ARGB32_Premultiplied:
-		mat = cv::Mat(image.height(), image.width(), CV_8UC4, (void*)image.constBits(), image.bytesPerLine());
-		break;
-	case QImage::Format_RGB888:
-		mat = cv::Mat(image.height(), image.width(), CV_8UC3, (void*)image.constBits(), image.bytesPerLine());
-		cv::cvtColor(mat, mat, CV_BGR2RGB);
-		break;
-	case QImage::Format_Indexed8:
-		mat = cv::Mat(image.height(), image.width(), CV_8UC1, (void*)image.constBits(), image.bytesPerLine());
-		break;
-	}
-	this->m_img = mat;
+ImageProcessor& ImageProcessor::operator=(QImage const &img) {
+	this->m_img = cv::Mat(img.height(), img.width(), CV_8UC3, const_cast<uchar *>(img.bits()),
+		static_cast<size_t>(img.bytesPerLine())).clone();
 	return *this;
+	//cv::Mat mat;
+	//switch (image.format())
+	//{
+	//case QImage::Format_ARGB32:
+	//case QImage::Format_RGB32:
+	//case QImage::Format_ARGB32_Premultiplied:
+	//	mat = cv::Mat(image.height(), image.width(), CV_8UC4, (void*)image.constBits(), image.bytesPerLine());
+	//	break;
+	//case QImage::Format_RGB888:
+	//	mat = cv::Mat(image.height(), image.width(), CV_8UC3, (void*)image.constBits(), image.bytesPerLine());
+	//	cv::cvtColor(mat, mat, CV_BGR2RGB);
+	//	break;
+	//case QImage::Format_Indexed8:
+	//	mat = cv::Mat(image.height(), image.width(), CV_8UC1, (void*)image.constBits(), image.bytesPerLine());
+	//	break;
+	//}
+	//this->m_img = mat;
+	//return *this;
 }
 
 

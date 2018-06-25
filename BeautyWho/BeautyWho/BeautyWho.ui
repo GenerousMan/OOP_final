@@ -32,7 +32,7 @@
          <x>0</x>
          <y>0</y>
          <width>559</width>
-         <height>574</height>
+         <height>573</height>
         </rect>
        </property>
        <widget class="QLabel" name="label">
@@ -68,7 +68,7 @@
          <x>0</x>
          <y>0</y>
          <width>559</width>
-         <height>574</height>
+         <height>573</height>
         </rect>
        </property>
        <widget class="QLabel" name="label_2">
@@ -90,7 +90,7 @@
     <item row="1" column="0" colspan="3">
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QPushButton" name="Open">
+       <widget class="QPushButton" name="open_button">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
           <horstretch>0</horstretch>
@@ -103,7 +103,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="Push_Lv1">
+       <widget class="QPushButton" name="gray_button">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
           <horstretch>0</horstretch>
@@ -116,7 +116,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="Push_Lv2">
+       <widget class="QPushButton" name="White_button">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
           <horstretch>0</horstretch>
@@ -129,7 +129,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="Push_Lv3">
+       <widget class="QPushButton" name="bright_button">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
           <horstretch>0</horstretch>
@@ -142,7 +142,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="Push_Lv4">
+       <widget class="QPushButton" name="rotat_button">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
           <horstretch>0</horstretch>
@@ -255,11 +255,11 @@
  <tabstops>
   <tabstop>horizontalSlider</tabstop>
   <tabstop>picafter</tabstop>
-  <tabstop>Open</tabstop>
-  <tabstop>Push_Lv1</tabstop>
-  <tabstop>Push_Lv2</tabstop>
-  <tabstop>Push_Lv3</tabstop>
-  <tabstop>Push_Lv4</tabstop>
+  <tabstop>open_button</tabstop>
+  <tabstop>gray_button</tabstop>
+  <tabstop>White_button</tabstop>
+  <tabstop>bright_button</tabstop>
+  <tabstop>rotat_button</tabstop>
   <tabstop>push_face</tabstop>
   <tabstop>picbefore</tabstop>
  </tabstops>
@@ -282,70 +282,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>Open</sender>
-   <signal>clicked()</signal>
-   <receiver>BeautyWhoClass</receiver>
-   <slot>open_pic()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>175</x>
-     <y>682</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>71</x>
-     <y>454</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>Push_Lv1</sender>
-   <signal>clicked()</signal>
-   <receiver>BeautyWhoClass</receiver>
-   <slot>gray_pic()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>384</x>
-     <y>682</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>344</x>
-     <y>555</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>Push_Lv2</sender>
-   <signal>clicked()</signal>
-   <receiver>BeautyWhoClass</receiver>
-   <slot>white_pic()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>574</x>
-     <y>682</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>499</x>
-     <y>597</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>Push_Lv3</sender>
-   <signal>clicked()</signal>
-   <receiver>BeautyWhoClass</receiver>
-   <slot>on_Push_Lv3_clicked()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>661</x>
-     <y>669</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>717</x>
-     <y>63</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>horizontalSlider</sender>
    <signal>valueChanged(int)</signal>
    <receiver>BeautyWhoClass</receiver>
@@ -362,26 +298,88 @@
    </hints>
   </connection>
   <connection>
-   <sender>Push_Lv4</sender>
+   <sender>bright_button</sender>
    <signal>clicked()</signal>
    <receiver>BeautyWhoClass</receiver>
-   <slot>on_Push_Lv4_clicked()</slot>
+   <slot>bright_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>864</x>
-     <y>668</y>
+     <x>715</x>
+     <y>665</y>
     </hint>
     <hint type="destinationlabel">
-     <x>578</x>
-     <y>347</y>
+     <x>743</x>
+     <y>689</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>rotat_button</sender>
+   <signal>clicked()</signal>
+   <receiver>BeautyWhoClass</receiver>
+   <slot>rotate_cliked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>921</x>
+     <y>675</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>932</x>
+     <y>691</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>open_button</sender>
+   <signal>clicked()</signal>
+   <receiver>BeautyWhoClass</receiver>
+   <slot>open_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>76</x>
+     <y>666</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>44</x>
+     <y>651</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>gray_button</sender>
+   <signal>clicked()</signal>
+   <receiver>BeautyWhoClass</receiver>
+   <slot>gray_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>311</x>
+     <y>665</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>273</x>
+     <y>652</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>White_button</sender>
+   <signal>clicked()</signal>
+   <receiver>BeautyWhoClass</receiver>
+   <slot>white_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>490</x>
+     <y>674</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>449</x>
+     <y>650</y>
     </hint>
    </hints>
   </connection>
  </connections>
  <slots>
-  <slot>slot1()</slot>
   <slot>onSliderValueChanged(int)</slot>
-  <slot>slot3()</slot>
   <slot>slot4()</slot>
   <slot>face()</slot>
   <slot>slot5()</slot>
@@ -389,10 +387,12 @@
   <slot>gray_pic()</slot>
   <slot>slot7()</slot>
   <slot>white_pic()</slot>
-  <slot>on_Push_Lv3_clicked()</slot>
   <slot>change_light(int)</slot>
   <slot>rotate(int)</slot>
-  <slot>on_Push_Lv4_clicked()</slot>
-  <slot>slot2()</slot>
+  <slot>bright_clicked()</slot>
+  <slot>rotate_cliked()</slot>
+  <slot>open_clicked()</slot>
+  <slot>gray_clicked()</slot>
+  <slot>white_clicked()</slot>
  </slots>
 </ui>

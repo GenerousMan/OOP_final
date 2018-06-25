@@ -14,12 +14,12 @@ public:
 	BeautyWho(QWidget *parent = Q_NULLPTR);
 
 private slots:
-	void open_pic();
-	void gray_pic();
-	void white_pic();
-	void on_Push_Lv3_clicked();
-	void on_Push_Lv4_clicked();
+	void bright_clicked();
+	void rotate_clicked();
 	void onSliderValueChanged(int i);
+	void open_clicked();
+	void gray_clicked();
+	void white_clicked();
 	
 private:
 	Ui::BeautyWhoClass *ui;

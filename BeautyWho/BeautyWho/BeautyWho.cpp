@@ -9,7 +9,7 @@
 #define CHNAGE_LIGHT 3
 #define ROTATE       4
 
-QImage *img = new QImage;
+QImage img = QImage();
 bool opened_file = false;
 int curr_event = OPEN_FILE;
 BeautyWho::BeautyWho(QWidget *parent)
@@ -21,7 +21,7 @@ BeautyWho::BeautyWho(QWidget *parent)
 	ui->setupUi(this);
 }
 
-void BeautyWho::open_pic() {
+void BeautyWho::open_clicked() {
 	curr_event = OPEN_FILE;
 	QString filename;
 	filename = QFileDialog::getOpenFileName(this,
@@ -33,18 +33,22 @@ void BeautyWho::open_pic() {
 		return;
 	}
 	else
-	{
-
-		if (!(img->load(filename))) //加载图像
+	{	
+		//ImageProcessor temp_img = cv::imread(filename.toStdString());
+		ImageProcessor* temp_img = new ImageProcessor( cv::imread(filename.toStdString()));
+		//img = temp_img.to_pQImage();
+		img = temp_img->to_QImage();
+		if(false)
+		//if (!(img->load(filename))) //加载图像
 		{
 			QMessageBox::information(this,
 				tr("打开图像失败"),
 				tr("打开图像失败!"));
-			delete img;
+			//delete img;
 			return;
 		}
 		opened_file = true;
-		show_image(img, 0);
+		show_image(&img, 0);
 	}
 }
 
@@ -68,30 +72,30 @@ bool BeautyWho::judge()  {
 	return true;
 }
 
-void BeautyWho::gray_pic() {
+void BeautyWho::gray_clicked() {
 	curr_event = GRAY;
 	if (judge()) {
-		ImageProcessor n_img = *img;
+		ImageProcessor n_img = img;
 		auto nn_img = n_img.gray();
 		show_image(&(nn_img.to_QImage()), 1);
 	}
 }
 
-void BeautyWho::white_pic() {
+void BeautyWho::white_clicked() {
 	curr_event = WHITE;
 	if (judge()) {
-		ImageProcessor n_img = *img;
+		ImageProcessor n_img = img;
 		auto nn_img = n_img.hue(-50);
 		show_image(&(nn_img.to_QImage()), 1);
 	}
 }
 
-void BeautyWho::on_Push_Lv3_clicked() {
+void BeautyWho::bright_clicked() {
 	curr_event = CHNAGE_LIGHT;
 	ui->horizontalSlider->setRange(0, 255);
 }
 
-void BeautyWho::on_Push_Lv4_clicked() {
+void BeautyWho::rotate_clicked() {
 	curr_event = ROTATE;
 	ui->horizontalSlider->setRange(0, 359);
 }
@@ -109,7 +113,7 @@ void BeautyWho::onSliderValueChanged(int i) {
 }
 void BeautyWho::change_light(int beta){
 	if (judge()){
-		ImageProcessor n_img = *img;
+		ImageProcessor n_img = img;
 		auto nn_img = n_img.light(beta);
 		show_image(&(nn_img.to_QImage()),1); 
 	}
@@ -117,7 +121,7 @@ void BeautyWho::change_light(int beta){
 
 void BeautyWho::rotate(int angle) {
 	if (judge()) {
-		ImageProcessor n_img = *img;
+		ImageProcessor n_img = img;
 		auto nn_img = n_img.rotation(angle);
 		show_image(&(nn_img.to_QImage()), 1);
 	}
