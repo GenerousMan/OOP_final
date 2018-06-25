@@ -32,7 +32,7 @@
          <x>0</x>
          <y>0</y>
          <width>563</width>
-         <height>550</height>
+         <height>551</height>
         </rect>
        </property>
        <widget class="QLabel" name="label">
@@ -68,7 +68,7 @@
          <x>0</x>
          <y>0</y>
          <width>562</width>
-         <height>550</height>
+         <height>551</height>
         </rect>
        </property>
        <widget class="QLabel" name="label_2">
@@ -311,7 +311,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>value</string>
+      <string/>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
