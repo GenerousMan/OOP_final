@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1249</width>
-    <height>787</height>
+    <width>934</width>
+    <height>543</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,7 +15,49 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout_2">
-    <item row="0" column="1">
+    <item row="0" column="0">
+     <widget class="QScrollArea" name="picbefore">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>425</width>
+         <height>385</height>
+        </rect>
+       </property>
+       <widget class="QLabel" name="label">
+        <property name="geometry">
+         <rect>
+          <x>130</x>
+          <y>160</y>
+          <width>161</width>
+          <height>71</height>
+         </rect>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:48pt;&quot;&gt;原图&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </item>
+    <item row="0" column="2">
      <widget class="QScrollArea" name="picafter">
       <property name="widgetResizable">
        <bool>true</bool>
@@ -25,8 +67,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>608</width>
-         <height>610</height>
+         <width>425</width>
+         <height>385</height>
         </rect>
        </property>
        <widget class="QLabel" name="label_2">
@@ -35,8 +77,8 @@
         </property>
         <property name="geometry">
          <rect>
-          <x>210</x>
-          <y>270</y>
+          <x>120</x>
+          <y>160</y>
           <width>251</width>
           <height>81</height>
          </rect>
@@ -48,7 +90,7 @@
       </widget>
      </widget>
     </item>
-    <item row="1" column="0" colspan="2">
+    <item row="2" column="0" colspan="3">
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="QPushButton" name="open_button">
@@ -130,7 +172,7 @@
       </item>
      </layout>
     </item>
-    <item row="2" column="0" colspan="2">
+    <item row="3" column="0" colspan="3">
      <layout class="QGridLayout" name="gridLayout">
       <item row="1" column="2">
        <widget class="QPushButton" name="open_button_2">
@@ -212,46 +254,17 @@
       </item>
      </layout>
     </item>
-    <item row="0" column="0">
-     <widget class="QScrollArea" name="picbefore">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
+    <item row="0" column="1">
+     <widget class="QLabel" name="label_4">
+      <property name="minimumSize">
+       <size>
+        <width>50</width>
+        <height>0</height>
+       </size>
       </property>
-      <property name="widgetResizable">
-       <bool>true</bool>
+      <property name="text">
+       <string/>
       </property>
-      <widget class="QWidget" name="scrollAreaWidgetContents">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>0</y>
-         <width>608</width>
-         <height>610</height>
-        </rect>
-       </property>
-       <widget class="QLabel" name="label">
-        <property name="geometry">
-         <rect>
-          <x>210</x>
-          <y>270</y>
-          <width>161</width>
-          <height>71</height>
-         </rect>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:48pt;&quot;&gt;原图&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-       </widget>
-      </widget>
      </widget>
     </item>
    </layout>

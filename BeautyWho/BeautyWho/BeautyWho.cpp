@@ -62,12 +62,10 @@ void BeautyWho::show_image(QImage *img, bool pic)const {
 	QLabel *label = new QLabel();
 	label->setPixmap(QPixmap::fromImage(*img));
 	label->resize(QSize(img->width(), img->height()));
-	if (pic==RIGHT) {
+	if (pic==RIGHT) 
 		ui->picafter->setWidget(label);
-	}	
 	else
 		ui->picbefore->setWidget(label);
-	
 }
 
 bool BeautyWho::judge() {
@@ -246,4 +244,10 @@ void BeautyWho::saturation_clicked() {
 		curr_event = SATURATION;
 		ui->horizontalSlider->setRange(0, 120);
 	}
+}
+
+void BeautyWho::setArrow() {
+	QPixmap pixmap("pic.png");
+	ui->label_4->setPixmap(pixmap);
+	ui->label_4->show();
 }

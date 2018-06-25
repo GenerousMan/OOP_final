@@ -8,5 +8,6 @@ int main(int argc, char *argv[])
 	BeautyWho w;
 	w.show();
 	w.hide_widget();
+	w.setArrow();
 	return a.exec();
 }
