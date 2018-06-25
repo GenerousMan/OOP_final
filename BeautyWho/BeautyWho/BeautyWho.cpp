@@ -6,7 +6,8 @@
 
 enum { OPEN_FILE, GRAY, WHITE, CHANGE_LIGHT, ROTATE, WHITE_BALANCE, NOTHING,HUE, CHANGE_PIC };// current event
 enum {LEFT,RIGHT};
-ImageProcessor img, img1;
+ImageProcessor img;
+ImageProcessor nn_img;
 bool opened_file = false;
 
 int curr_event = NOTHING;
@@ -62,7 +63,6 @@ void BeautyWho::show_image(QImage *img, bool pic)const {
 	label->resize(QSize(img->width(), img->height()));
 	if (pic==RIGHT) {
 		ui->picafter->setWidget(label);
-		img1 = *img;
 	}	
 	else
 		ui->picbefore->setWidget(label);
@@ -84,7 +84,7 @@ void BeautyWho::gray_clicked() {
 	curr_event = GRAY;
 	if (judge()) {
 		ImageProcessor n_img = img;
-		auto nn_img = n_img.gray();
+		nn_img = n_img.gray();
 		show_image(&(nn_img.to_QImage()), RIGHT);
 	}
 }
@@ -94,7 +94,7 @@ void BeautyWho::white_balance_clicked() {
 	curr_event = WHITE_BALANCE;
 	if (judge()) {
 		ImageProcessor n_img = img;
-		auto nn_img = n_img.white_balance();
+		nn_img = n_img.white_balance();
 		show_image(&(nn_img.to_QImage()), RIGHT);
 	}
 }
@@ -139,7 +139,7 @@ void BeautyWho::onSliderValueChanged(int i) {
 void BeautyWho::change_light(int beta) {
 	if (judge()) {
 		ImageProcessor n_img = img;
-		auto nn_img = n_img.light(beta);
+		nn_img = n_img.light(beta);
 		show_image(&(nn_img.to_QImage()), RIGHT);
 	}
 }
@@ -147,7 +147,7 @@ void BeautyWho::change_light(int beta) {
 void BeautyWho::rotate(int angle) {
 	if (judge()) {
 		ImageProcessor n_img = img;
-		auto nn_img = n_img.rotation(angle);
+		nn_img = n_img.rotation(angle);
 		show_image(&(nn_img.to_QImage()), RIGHT);
 	}
 }
@@ -155,7 +155,7 @@ void BeautyWho::rotate(int angle) {
 void BeautyWho::white(double beta) {
 	if (judge()) {
 		ImageProcessor n_img = img;
-		auto nn_img = n_img.whitening(beta);
+		nn_img = n_img.whitening(beta);
 		show_image(&(nn_img.to_QImage()), RIGHT);
 	}
 }
@@ -169,7 +169,7 @@ void BeautyWho::hue_clicked() {
 void BeautyWho::hue(int a) {
 	if (judge()) {
 		ImageProcessor n_img = img;
-		auto nn_img = n_img.hue(a);
+		nn_img = n_img.hue(a);
 		show_image(&(nn_img.to_QImage()), RIGHT);
 	}
 }
@@ -178,7 +178,7 @@ void BeautyWho::change_pic() {
 	hide_widget();
 	curr_event = CHANGE_PIC;
 	if (judge()) {
-		img = img1;
-		show_image(&(img.to_QImage()), LEFT);
+		img = nn_img;
+		show_image(&(nn_img.to_QImage()), LEFT);
 	}
 }
