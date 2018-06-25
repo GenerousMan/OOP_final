@@ -9,7 +9,7 @@
 #define CHNAGE_LIGHT 3
 #define ROTATE       4
 
-QImage img = QImage();
+ImageProcessor img;
 bool opened_file = false;
 int curr_event = OPEN_FILE;
 BeautyWho::BeautyWho(QWidget *parent)
@@ -35,9 +35,9 @@ void BeautyWho::open_clicked() {
 	else
 	{	
 		//ImageProcessor temp_img = cv::imread(filename.toStdString());
-		ImageProcessor* temp_img = new ImageProcessor( cv::imread(filename.toStdString()));
+		//ImageProcessor* temp_img = new ImageProcessor( cv::imread(filename.toStdString()));
 		//img = temp_img.to_pQImage();
-		img = temp_img->to_QImage();
+		img = cv::imread(filename.toStdString());
 		if(false)
 		//if (!(img->load(filename))) //加载图像
 		{
@@ -48,7 +48,7 @@ void BeautyWho::open_clicked() {
 			return;
 		}
 		opened_file = true;
-		show_image(&img, 0);
+		show_image(&img.to_QImage(), 0);
 	}
 }
 
@@ -85,7 +85,7 @@ void BeautyWho::white_clicked() {
 	curr_event = WHITE;
 	if (judge()) {
 		ImageProcessor n_img = img;
-		auto nn_img = n_img.hue(-50);
+		auto nn_img = n_img.whitening();
 		show_image(&(nn_img.to_QImage()), 1);
 	}
 }
