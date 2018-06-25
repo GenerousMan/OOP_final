@@ -5,6 +5,7 @@
 #include <string>
 
 enum { OPEN_FILE, GRAY, WHITE, CHANGE_LIGHT, ROTATE, WHITE_BALANCE, NOTHING,HUE, CHANGE_PIC };// current event
+enum {LEFT,RIGHT};
 ImageProcessor img, img1;
 bool opened_file = false;
 
@@ -50,8 +51,8 @@ void BeautyWho::open_clicked() {
 		QByteArray cdata = filename.toLocal8Bit();
 		img = cv::imread(std::string(cdata));
 		opened_file = true;
-		show_image(&img.to_QImage(), 0);
-		show_image(&img.to_QImage(), 1);
+		show_image(&img.to_QImage(), LEFT);
+		show_image(&img.to_QImage(), RIGHT);
 	}
 }
 
@@ -59,7 +60,7 @@ void BeautyWho::show_image(QImage *img, bool pic)const {
 	QLabel *label = new QLabel();
 	label->setPixmap(QPixmap::fromImage(*img));
 	label->resize(QSize(img->width(), img->height()));
-	if (pic) {
+	if (pic==RIGHT) {
 		ui->picafter->setWidget(label);
 		img1 = *img;
 	}	
@@ -71,8 +72,8 @@ void BeautyWho::show_image(QImage *img, bool pic)const {
 bool BeautyWho::judge() {
 	if (!opened_file) {
 		QMessageBox::information(this,
-			tr("Wanning"),
-			tr("No images have been opened yet."));
+			tr("出现错误"),
+			tr("您还没有打开图片"));
 		return false;
 	}
 	return true;
@@ -84,7 +85,7 @@ void BeautyWho::gray_clicked() {
 	if (judge()) {
 		ImageProcessor n_img = img;
 		auto nn_img = n_img.gray();
-		show_image(&(nn_img.to_QImage()), 1);
+		show_image(&(nn_img.to_QImage()), RIGHT);
 	}
 }
 
@@ -94,7 +95,7 @@ void BeautyWho::white_balance_clicked() {
 	if (judge()) {
 		ImageProcessor n_img = img;
 		auto nn_img = n_img.white_balance();
-		show_image(&(nn_img.to_QImage()), 1);
+		show_image(&(nn_img.to_QImage()), RIGHT);
 	}
 }
 
@@ -139,7 +140,7 @@ void BeautyWho::change_light(int beta) {
 	if (judge()) {
 		ImageProcessor n_img = img;
 		auto nn_img = n_img.light(beta);
-		show_image(&(nn_img.to_QImage()), 1);
+		show_image(&(nn_img.to_QImage()), RIGHT);
 	}
 }
 
@@ -147,7 +148,7 @@ void BeautyWho::rotate(int angle) {
 	if (judge()) {
 		ImageProcessor n_img = img;
 		auto nn_img = n_img.rotation(angle);
-		show_image(&(nn_img.to_QImage()), 1);
+		show_image(&(nn_img.to_QImage()), RIGHT);
 	}
 }
 
@@ -155,7 +156,7 @@ void BeautyWho::white(double beta) {
 	if (judge()) {
 		ImageProcessor n_img = img;
 		auto nn_img = n_img.whitening(beta);
-		show_image(&(nn_img.to_QImage()), 1);
+		show_image(&(nn_img.to_QImage()), RIGHT);
 	}
 }
 
@@ -169,7 +170,7 @@ void BeautyWho::hue(int a) {
 	if (judge()) {
 		ImageProcessor n_img = img;
 		auto nn_img = n_img.hue(a);
-		show_image(&(nn_img.to_QImage()), 1);
+		show_image(&(nn_img.to_QImage()), RIGHT);
 	}
 }
 
@@ -178,6 +179,6 @@ void BeautyWho::change_pic() {
 	curr_event = CHANGE_PIC;
 	if (judge()) {
 		img = img1;
-		show_image(&(img.to_QImage()), 0);
+		show_image(&(img.to_QImage()), LEFT);
 	}
 }
