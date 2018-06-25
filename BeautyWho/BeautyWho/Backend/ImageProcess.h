@@ -40,19 +40,19 @@ public:
     // rotate image
     // @angle: angle to rotate
     // @return an image processor obejct with rotated image.
-    ImageProcessor rotation(double angle) const;
+    ImageProcessor rotation(double angle) const;//BEEN DONE
 
     // Crop image
     ImageProcessor crop(cv::Rect rect);
 
     // TO gray image.
-    ImageProcessor gray() const;
+    ImageProcessor gray() const;							//BEEN DONE
 
     // Change contrast, 1.0 means no change
     ImageProcessor contraast(double alpha) const;
 
     // Change light, 0 means no change
-    ImageProcessor light(double beta) const;
+    ImageProcessor light(double beta) const;	//BEEN DONE
 
     // Auto histogram equalize
     ImageProcessor histogram_equalize() const;
@@ -86,16 +86,6 @@ public:
     // convert to QImage, return a copy;
     QImage to_QImage(QImage::Format format = QImage::Format_RGB888) const;
 
-	QImage* ImageProcessor::to_pQImage(QImage::Format format = QImage::Format_RGB888) const {
-		cv::Mat temp_img;
-		cv::cvtColor(m_img, temp_img, cv::COLOR_BGR2RGB);
-		cv::namedWindow("TEST");
-		cv::imshow("TEST", m_img);
-		cv::waitKey(0);
-		QImage* p = new QImage(temp_img.data, temp_img.cols, temp_img.rows,
-			static_cast<int>(temp_img.step), format);
-		return p;
-	}
     ~ImageProcessor() = default;
 
 

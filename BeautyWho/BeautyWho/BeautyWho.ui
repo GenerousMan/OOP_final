@@ -7,14 +7,14 @@
     <x>0</x>
     <y>0</y>
     <width>1158</width>
-    <height>695</height>
+    <height>709</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>BeautyWho</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QGridLayout" name="gridLayout">
+   <layout class="QGridLayout" name="gridLayout_2">
     <item row="0" column="0">
      <widget class="QScrollArea" name="picbefore">
       <property name="sizePolicy">
@@ -31,14 +31,14 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>559</width>
-         <height>573</height>
+         <width>563</width>
+         <height>550</height>
         </rect>
        </property>
        <widget class="QLabel" name="label">
         <property name="geometry">
          <rect>
-          <x>230</x>
+          <x>240</x>
           <y>280</y>
           <width>72</width>
           <height>15</height>
@@ -67,14 +67,14 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>559</width>
-         <height>573</height>
+         <width>562</width>
+         <height>550</height>
         </rect>
        </property>
        <widget class="QLabel" name="label_2">
         <property name="geometry">
          <rect>
-          <x>240</x>
+          <x>260</x>
           <y>280</y>
           <width>72</width>
           <height>15</height>
@@ -87,7 +87,7 @@
       </widget>
      </widget>
     </item>
-    <item row="1" column="0" colspan="3">
+    <item row="1" column="0" colspan="2">
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="QPushButton" name="open_button">
@@ -142,7 +142,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="rotat_button">
+       <widget class="QPushButton" name="rotate_button">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
           <horstretch>0</horstretch>
@@ -156,6 +156,88 @@
       </item>
       <item>
        <widget class="QPushButton" name="push_face">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>人脸识别</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item row="2" column="0" colspan="2">
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QPushButton" name="open_button_2">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>自动白平衡</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QPushButton" name="gray_button_2">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>灰度</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QPushButton" name="White_button_2">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>白化</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QPushButton" name="bright_button_2">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>调节亮度</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="4">
+       <widget class="QPushButton" name="rotat_button_2">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>旋转</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="5">
+       <widget class="QPushButton" name="push_face_2">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
           <horstretch>0</horstretch>
@@ -191,7 +273,7 @@
     <set>Qt::AllDockWidgetAreas</set>
    </property>
    <property name="windowTitle">
-    <string>控制面板</string>
+    <string>选择变化程度</string>
    </property>
    <attribute name="dockWidgetArea">
     <number>4</number>
@@ -259,7 +341,7 @@
   <tabstop>gray_button</tabstop>
   <tabstop>White_button</tabstop>
   <tabstop>bright_button</tabstop>
-  <tabstop>rotat_button</tabstop>
+  <tabstop>rotate_button</tabstop>
   <tabstop>push_face</tabstop>
   <tabstop>picbefore</tabstop>
  </tabstops>
@@ -273,7 +355,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>1145</x>
-     <y>682</y>
+     <y>659</y>
     </hint>
     <hint type="destinationlabel">
      <x>958</x>
@@ -292,8 +374,8 @@
      <y>119</y>
     </hint>
     <hint type="destinationlabel">
-     <x>578</x>
-     <y>347</y>
+     <x>489</x>
+     <y>61</y>
     </hint>
    </hints>
   </connection>
@@ -304,28 +386,12 @@
    <slot>bright_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>715</x>
-     <y>665</y>
+     <x>765</x>
+     <y>659</y>
     </hint>
     <hint type="destinationlabel">
      <x>743</x>
      <y>689</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>rotat_button</sender>
-   <signal>clicked()</signal>
-   <receiver>BeautyWhoClass</receiver>
-   <slot>rotate_cliked()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>921</x>
-     <y>675</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>932</x>
-     <y>691</y>
     </hint>
    </hints>
   </connection>
@@ -336,8 +402,8 @@
    <slot>open_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>76</x>
-     <y>666</y>
+     <x>88</x>
+     <y>659</y>
     </hint>
     <hint type="destinationlabel">
      <x>44</x>
@@ -352,8 +418,8 @@
    <slot>gray_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>311</x>
-     <y>665</y>
+     <x>384</x>
+     <y>659</y>
     </hint>
     <hint type="destinationlabel">
      <x>273</x>
@@ -368,12 +434,44 @@
    <slot>white_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>490</x>
-     <y>674</y>
+     <x>574</x>
+     <y>659</y>
     </hint>
     <hint type="destinationlabel">
      <x>449</x>
      <y>650</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>open_button_2</sender>
+   <signal>clicked()</signal>
+   <receiver>BeautyWhoClass</receiver>
+   <slot>white_balance_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>175</x>
+     <y>677</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>198</x>
+     <y>708</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>rotate_button</sender>
+   <signal>clicked()</signal>
+   <receiver>BeautyWhoClass</receiver>
+   <slot>rotate_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>794</x>
+     <y>638</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>785</x>
+     <y>629</y>
     </hint>
    </hints>
   </connection>
@@ -394,5 +492,7 @@
   <slot>open_clicked()</slot>
   <slot>gray_clicked()</slot>
   <slot>white_clicked()</slot>
+  <slot>white_balance_clicked()</slot>
+  <slot>rotate_clicked()</slot>
  </slots>
 </ui>

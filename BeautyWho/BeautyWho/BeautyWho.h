@@ -16,10 +16,11 @@ public:
 private slots:
 	void bright_clicked();
 	void rotate_clicked();
-	void onSliderValueChanged(int i);
 	void open_clicked();
 	void gray_clicked();
 	void white_clicked();
+	void white_balance_clicked();
+	void onSliderValueChanged(int i);
 	
 private:
 	Ui::BeautyWhoClass *ui;
@@ -27,6 +28,7 @@ private:
 	void change_light(int beta);
 	void rotate(int angle);
 	bool judge() ;
+	void white(double beta);
 };
 
 #endif //OOP_FINAL_BEAUTYWHO_H
