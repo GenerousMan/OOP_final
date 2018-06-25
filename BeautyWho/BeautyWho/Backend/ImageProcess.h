@@ -78,10 +78,10 @@ public:
 
     //Adjust hue
     // shift is shift value in (-255, 255)
-    ImageProcessor hue(char shift = 20) const;
+    ImageProcessor hue(char shift = 20) const; 
 
     // Auto white balance
-    ImageProcessor white_balance() const;
+    ImageProcessor white_balance() const;//BEEN DONE
 
     // convert to QImage, return a copy;
     QImage to_QImage(QImage::Format format = QImage::Format_RGB888) const;

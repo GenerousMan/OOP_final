@@ -4,7 +4,7 @@
 #include"./Backend/ImageProcess.h"
 #include <string>
 
-enum { OPEN_FILE, GRAY, WHITE, CHANGE_LIGHT, ROTATE, WHITE_BALANCE, NOTHING };// current event
+enum { OPEN_FILE, GRAY, WHITE, CHANGE_LIGHT, ROTATE, WHITE_BALANCE, NOTHING,HUE };// current event
 ImageProcessor img;//original picture
 bool opened_file = false;
 int curr_event = NOTHING;
@@ -17,8 +17,19 @@ BeautyWho::BeautyWho(QWidget *parent)
 
 }
 
+void BeautyWho::hide_widget() {
+	ui->dockWidget->hide();
+}
+
+void BeautyWho::show_widget(const char * a) {
+	ui->dockWidget->show();
+	QString str;
+	str = str.fromLocal8Bit(a);
+	ui->label_3->setText(str);
+}
+
 void BeautyWho::open_clicked() {
-	ui->label_3->setText("");
+	hide_widget();
 	if (curr_event != NOTHING) {
 		QLabel *label = new QLabel();
 		ui->picafter->setWidget(label);
@@ -64,7 +75,7 @@ bool BeautyWho::judge() {
 }
 
 void BeautyWho::gray_clicked() {
-	ui->label_3->setText("");
+	hide_widget();
 	curr_event = GRAY;
 	if (judge()) {
 		ImageProcessor n_img = img;
@@ -73,16 +84,8 @@ void BeautyWho::gray_clicked() {
 	}
 }
 
-void BeautyWho::white_clicked() {
-	QString str;
-	str = str.fromLocal8Bit("变白程度");
-	ui->label_3->setText(str);
-	curr_event = WHITE;
-	ui->horizontalSlider->setRange(1, 300);
-}
-
 void BeautyWho::white_balance_clicked() {
-	ui->label_3->setText("");
+	hide_widget();
 	curr_event = WHITE_BALANCE;
 	if (judge()) {
 		ImageProcessor n_img = img;
@@ -91,18 +94,20 @@ void BeautyWho::white_balance_clicked() {
 	}
 }
 
+void BeautyWho::white_clicked() {
+	show_widget("变白程度");
+	curr_event = WHITE;
+	ui->horizontalSlider->setRange(1, 280);
+}
+
 void BeautyWho::bright_clicked() {
-	QString str;
-	str = str.fromLocal8Bit("调节亮度");
-	ui->label_3->setText(str);
+	show_widget("调节亮度");
 	curr_event = CHANGE_LIGHT;
 	ui->horizontalSlider->setRange(-255, 255);
 }
 
 void BeautyWho::rotate_clicked() {
-	QString str;
-	str = str.fromLocal8Bit("旋转角度");
-	ui->label_3->setText(str);
+	show_widget("旋转角度");
 	curr_event = ROTATE;
 	ui->horizontalSlider->setRange(0, 359);
 }
@@ -117,6 +122,8 @@ void BeautyWho::onSliderValueChanged(int i) {
 	case WHITE:
 		white((i + 1000) / 1000.0);
 		break;
+	case HUE:
+		hue(i);
 	default:
 		break;
 	}
@@ -141,6 +148,20 @@ void BeautyWho::white(double beta) {
 	if (judge()) {
 		ImageProcessor n_img = img;
 		auto nn_img = n_img.whitening(beta);
+		show_image(&(nn_img.to_QImage()), 1);
+	}
+}
+
+void BeautyWho::hue_clicked() {
+	show_widget("饱和度调整");
+	curr_event = HUE;
+	ui->horizontalSlider->setRange(0, 120);
+}
+
+void BeautyWho::hue(int a) {
+	if (judge()) {
+		ImageProcessor n_img = img;
+		auto nn_img = n_img.hue(a);
 		show_image(&(nn_img.to_QImage()), 1);
 	}
 }

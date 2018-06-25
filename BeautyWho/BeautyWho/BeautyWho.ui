@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1158</width>
-    <height>709</height>
+    <width>1055</width>
+    <height>609</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,21 +25,21 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>562</width>
-         <height>551</height>
+         <width>513</width>
+         <height>451</height>
         </rect>
        </property>
        <widget class="QLabel" name="label_2">
         <property name="geometry">
          <rect>
-          <x>260</x>
-          <y>280</y>
-          <width>72</width>
-          <height>15</height>
+          <x>190</x>
+          <y>210</y>
+          <width>201</width>
+          <height>81</height>
          </rect>
         </property>
         <property name="text">
-         <string>效果图</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:48pt;&quot;&gt;效果图&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </widget>
@@ -121,7 +121,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>人脸识别</string>
+         <string>饱和度调整</string>
         </property>
        </widget>
       </item>
@@ -225,17 +225,17 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>563</width>
-         <height>551</height>
+         <width>514</width>
+         <height>451</height>
         </rect>
        </property>
        <widget class="QLabel" name="label">
         <property name="geometry">
          <rect>
-          <x>240</x>
-          <y>280</y>
-          <width>72</width>
-          <height>15</height>
+          <x>180</x>
+          <y>220</y>
+          <width>141</width>
+          <height>71</height>
          </rect>
         </property>
         <property name="sizePolicy">
@@ -245,7 +245,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>原图</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:48pt;&quot;&gt;原图&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
       </widget>
@@ -262,6 +262,12 @@
      <horstretch>0</horstretch>
      <verstretch>0</verstretch>
     </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>60</width>
+     <height>60</height>
+    </size>
    </property>
    <property name="floating">
     <bool>true</bool>
@@ -378,22 +384,6 @@
  <resources/>
  <connections>
   <connection>
-   <sender>push_face</sender>
-   <signal>clicked()</signal>
-   <receiver>BeautyWhoClass</receiver>
-   <slot>face()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>1145</x>
-     <y>659</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>958</x>
-     <y>472</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>horizontalSlider</sender>
    <signal>valueChanged(int)</signal>
    <receiver>BeautyWhoClass</receiver>
@@ -416,8 +406,8 @@
    <slot>bright_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>765</x>
-     <y>659</y>
+     <x>697</x>
+     <y>567</y>
     </hint>
     <hint type="destinationlabel">
      <x>743</x>
@@ -432,8 +422,8 @@
    <slot>open_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>88</x>
-     <y>659</y>
+     <x>98</x>
+     <y>567</y>
     </hint>
     <hint type="destinationlabel">
      <x>44</x>
@@ -448,8 +438,8 @@
    <slot>gray_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>384</x>
-     <y>659</y>
+     <x>350</x>
+     <y>567</y>
     </hint>
     <hint type="destinationlabel">
      <x>273</x>
@@ -464,8 +454,8 @@
    <slot>white_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>574</x>
-     <y>659</y>
+     <x>524</x>
+     <y>567</y>
     </hint>
     <hint type="destinationlabel">
      <x>449</x>
@@ -480,8 +470,8 @@
    <slot>white_balance_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>175</x>
-     <y>677</y>
+     <x>177</x>
+     <y>598</y>
     </hint>
     <hint type="destinationlabel">
      <x>198</x>
@@ -496,8 +486,8 @@
    <slot>rotate_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>794</x>
-     <y>638</y>
+     <x>871</x>
+     <y>567</y>
     </hint>
     <hint type="destinationlabel">
      <x>785</x>
@@ -505,11 +495,26 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>push_face</sender>
+   <signal>clicked()</signal>
+   <receiver>BeautyWhoClass</receiver>
+   <slot>hue_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1023</x>
+     <y>550</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1032</x>
+     <y>541</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>onSliderValueChanged(int)</slot>
   <slot>slot4()</slot>
-  <slot>face()</slot>
   <slot>slot5()</slot>
   <slot>open_pic()</slot>
   <slot>gray_pic()</slot>
@@ -524,5 +529,6 @@
   <slot>white_clicked()</slot>
   <slot>white_balance_clicked()</slot>
   <slot>rotate_clicked()</slot>
+  <slot>hue_clicked()</slot>
  </slots>
 </ui>

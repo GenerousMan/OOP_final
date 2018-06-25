@@ -12,11 +12,14 @@ class BeautyWho : public QMainWindow
 
 public:
 	BeautyWho(QWidget *parent = Q_NULLPTR);
+	void hide_widget();
+	void show_widget(const char *a);
 
 private slots:
 	void bright_clicked();
 	void rotate_clicked();
 	void open_clicked();
+	void hue_clicked();
 	void gray_clicked();
 	void white_clicked();
 	void white_balance_clicked();
@@ -29,6 +32,7 @@ private:
 	void rotate(int angle);
 	bool judge() ;
 	void white(double beta);
+	void hue(int a);
 };
 
 #endif //OOP_FINAL_BEAUTYWHO_H
