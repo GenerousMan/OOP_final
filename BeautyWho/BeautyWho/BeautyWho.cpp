@@ -50,6 +50,7 @@ void BeautyWho::show_image(QImage *img, bool pic)const {
 		ui->picafter->setWidget(label);
 	else
 		ui->picbefore->setWidget(label);
+	
 }
 
 bool BeautyWho::judge() {
@@ -77,7 +78,7 @@ void BeautyWho::white_clicked() {
 	str = str.fromLocal8Bit("±ä°×³Ì¶È");
 	ui->label_3->setText(str);
 	curr_event = WHITE;
-	ui->horizontalSlider->setRange(1, 30);
+	ui->horizontalSlider->setRange(1, 300);
 }
 
 void BeautyWho::white_balance_clicked() {
@@ -114,7 +115,7 @@ void BeautyWho::onSliderValueChanged(int i) {
 		rotate(i);
 		break;
 	case WHITE:
-		white((i + 100) / 100.0);
+		white((i + 1000) / 1000.0);
 		break;
 	default:
 		break;
