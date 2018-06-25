@@ -2,6 +2,7 @@
 #include <QFileDialog>  
 #include <QMessageBox>
 #include"./Backend/ImageProcess.h"
+#include <string>
 
 enum{OPEN_FILE,GRAY,WHITE,CHANGE_LIGHT,ROTATE,NOTHING};// current event
 ImageProcessor img;//original picture
@@ -30,8 +31,9 @@ void BeautyWho::open_clicked() {
 		return;
 	}
 	else
-	{	
-		img = cv::imread(filename.toStdString());
+	{
+		QByteArray cdata = filename.toLocal8Bit();
+		img = cv::imread(std::string(cdata));
 		opened_file = true;
 		show_image(&img.to_QImage(), 0);
 	}
