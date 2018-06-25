@@ -4,16 +4,17 @@
 #include"./Backend/ImageProcess.h"
 #include <string>
 
-enum { OPEN_FILE, GRAY, WHITE, CHANGE_LIGHT, ROTATE, WHITE_BALANCE, NOTHING,HUE };// current event
-ImageProcessor img;//original picture
+enum { OPEN_FILE, GRAY, WHITE, CHANGE_LIGHT, ROTATE, WHITE_BALANCE, NOTHING,HUE, CHANGE_PIC };// current event
+ImageProcessor img, img1;
 bool opened_file = false;
+
 int curr_event = NOTHING;
 
 BeautyWho::BeautyWho(QWidget *parent)
 	: QMainWindow(parent)
 {
 	ui->setupUi(this);
-	ui->dockWidget->setMinimumSize(300, 300);
+	ui->dockWidget->setMinimumSize(300, 200);
 
 }
 
@@ -50,6 +51,7 @@ void BeautyWho::open_clicked() {
 		img = cv::imread(std::string(cdata));
 		opened_file = true;
 		show_image(&img.to_QImage(), 0);
+		show_image(&img.to_QImage(), 1);
 	}
 }
 
@@ -57,8 +59,10 @@ void BeautyWho::show_image(QImage *img, bool pic)const {
 	QLabel *label = new QLabel();
 	label->setPixmap(QPixmap::fromImage(*img));
 	label->resize(QSize(img->width(), img->height()));
-	if (pic)
+	if (pic) {
 		ui->picafter->setWidget(label);
+		img1 = *img;
+	}	
 	else
 		ui->picbefore->setWidget(label);
 	
@@ -112,6 +116,8 @@ void BeautyWho::rotate_clicked() {
 	ui->horizontalSlider->setRange(0, 359);
 }
 void BeautyWho::onSliderValueChanged(int i) {
+	if (!ui->dockWidget->isVisible())
+		return;
 	switch (curr_event) {
 	case CHANGE_LIGHT:
 		change_light(i);
@@ -124,6 +130,7 @@ void BeautyWho::onSliderValueChanged(int i) {
 		break;
 	case HUE:
 		hue(i);
+		break;
 	default:
 		break;
 	}
@@ -163,5 +170,14 @@ void BeautyWho::hue(int a) {
 		ImageProcessor n_img = img;
 		auto nn_img = n_img.hue(a);
 		show_image(&(nn_img.to_QImage()), 1);
+	}
+}
+
+void BeautyWho::change_pic() {
+	hide_widget();
+	curr_event = CHANGE_PIC;
+	if (judge()) {
+		img = img1;
+		show_image(&(img.to_QImage()), 0);
 	}
 }

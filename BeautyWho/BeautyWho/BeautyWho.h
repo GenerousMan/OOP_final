@@ -24,6 +24,7 @@ private slots:
 	void white_clicked();
 	void white_balance_clicked();
 	void onSliderValueChanged(int i);
+	void change_pic();
 	
 private:
 	Ui::BeautyWhoClass *ui;

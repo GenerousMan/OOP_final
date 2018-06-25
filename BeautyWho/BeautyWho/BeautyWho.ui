@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1055</width>
-    <height>609</height>
+    <width>1249</width>
+    <height>787</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,16 +25,19 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>513</width>
-         <height>451</height>
+         <width>608</width>
+         <height>610</height>
         </rect>
        </property>
        <widget class="QLabel" name="label_2">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
         <property name="geometry">
          <rect>
-          <x>190</x>
-          <y>210</y>
-          <width>201</width>
+          <x>140</x>
+          <y>190</y>
+          <width>251</width>
           <height>81</height>
          </rect>
         </property>
@@ -143,7 +146,7 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QPushButton" name="gray_button_2">
+       <widget class="QPushButton" name="change_button">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
           <horstretch>0</horstretch>
@@ -151,7 +154,7 @@
          </sizepolicy>
         </property>
         <property name="text">
-         <string>灰度</string>
+         <string>处理效果图</string>
         </property>
        </widget>
       </item>
@@ -225,16 +228,16 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>514</width>
-         <height>451</height>
+         <width>608</width>
+         <height>610</height>
         </rect>
        </property>
        <widget class="QLabel" name="label">
         <property name="geometry">
          <rect>
           <x>180</x>
-          <y>220</y>
-          <width>141</width>
+          <y>200</y>
+          <width>161</width>
           <height>71</height>
          </rect>
         </property>
@@ -265,7 +268,7 @@
    </property>
    <property name="minimumSize">
     <size>
-     <width>60</width>
+     <width>68</width>
      <height>60</height>
     </size>
    </property>
@@ -406,12 +409,12 @@
    <slot>bright_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>697</x>
-     <y>567</y>
+     <x>723</x>
+     <y>710</y>
     </hint>
     <hint type="destinationlabel">
-     <x>743</x>
-     <y>689</y>
+     <x>616</x>
+     <y>378</y>
     </hint>
    </hints>
   </connection>
@@ -422,12 +425,12 @@
    <slot>open_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>98</x>
-     <y>567</y>
+     <x>104</x>
+     <y>710</y>
     </hint>
     <hint type="destinationlabel">
      <x>44</x>
-     <y>651</y>
+     <y>378</y>
     </hint>
    </hints>
   </connection>
@@ -438,12 +441,12 @@
    <slot>gray_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>350</x>
-     <y>567</y>
+     <x>311</x>
+     <y>710</y>
     </hint>
     <hint type="destinationlabel">
      <x>273</x>
-     <y>652</y>
+     <y>378</y>
     </hint>
    </hints>
   </connection>
@@ -454,12 +457,12 @@
    <slot>white_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>524</x>
-     <y>567</y>
+     <x>513</x>
+     <y>710</y>
     </hint>
     <hint type="destinationlabel">
      <x>449</x>
-     <y>650</y>
+     <y>378</y>
     </hint>
    </hints>
   </connection>
@@ -470,12 +473,12 @@
    <slot>white_balance_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>177</x>
-     <y>598</y>
+     <x>104</x>
+     <y>747</y>
     </hint>
     <hint type="destinationlabel">
      <x>198</x>
-     <y>708</y>
+     <y>378</y>
     </hint>
    </hints>
   </connection>
@@ -486,12 +489,12 @@
    <slot>rotate_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>871</x>
-     <y>567</y>
+     <x>927</x>
+     <y>710</y>
     </hint>
     <hint type="destinationlabel">
-     <x>785</x>
-     <y>629</y>
+     <x>616</x>
+     <y>378</y>
     </hint>
    </hints>
   </connection>
@@ -502,12 +505,28 @@
    <slot>hue_clicked()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1023</x>
-     <y>550</y>
+     <x>1133</x>
+     <y>710</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1032</x>
-     <y>541</y>
+     <x>616</x>
+     <y>378</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>change_button</sender>
+   <signal>clicked()</signal>
+   <receiver>BeautyWhoClass</receiver>
+   <slot>change_pic()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>760</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>624</x>
+     <y>393</y>
     </hint>
    </hints>
   </connection>
@@ -530,5 +549,6 @@
   <slot>white_balance_clicked()</slot>
   <slot>rotate_clicked()</slot>
   <slot>hue_clicked()</slot>
+  <slot>change_pic()</slot>
  </slots>
 </ui>
