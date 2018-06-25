@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #ifndef BEAUTYWHO_H
 #define BEAUTYWHO_H

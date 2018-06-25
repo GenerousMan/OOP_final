@@ -31,8 +31,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>425</width>
-         <height>385</height>
+         <width>422</width>
+         <height>366</height>
         </rect>
        </property>
        <widget class="QLabel" name="label">
@@ -67,9 +67,12 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>425</width>
-         <height>385</height>
+         <width>422</width>
+         <height>366</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
        </property>
        <widget class="QLabel" name="label_2">
         <property name="enabled">

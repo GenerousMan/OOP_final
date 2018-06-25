@@ -1,4 +1,5 @@
 <RCC>
-    <qresource prefix="BeautyWho">
+    <qresource prefix="/BeautyWho">
+        <file>style.qss</file>
     </qresource>
 </RCC>
