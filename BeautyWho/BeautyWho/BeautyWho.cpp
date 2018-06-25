@@ -25,7 +25,7 @@ void BeautyWho::hide_widget() {
 	ui->dockWidget->hide();
 }
 
-void BeautyWho::show_widget(const char * a) {
+void BeautyWho::show_widget(const char* a) {
 	ui->dockWidget->show();
 	QString str;
 	str = str.fromLocal8Bit(a);

@@ -13,7 +13,7 @@ class BeautyWho : public QMainWindow
 public:
 	BeautyWho(QWidget *parent = Q_NULLPTR);
 	void hide_widget();
-	void show_widget(const char *a);
+	void show_widget(const char* a);
 	void setArrow();
 
 private slots:

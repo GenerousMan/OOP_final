@@ -4,10 +4,11 @@
 
 int main(int argc, char *argv[])
 {
+	
 	QApplication a(argc, argv);
 	BeautyWho w;
-	w.show();
 	w.hide_widget();
+	w.show();
 	w.setArrow();
 	return a.exec();
 }
